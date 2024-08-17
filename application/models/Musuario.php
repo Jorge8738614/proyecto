@@ -13,10 +13,9 @@ class Musuario extends CI_Model {
 		return $resultados -> result(); //devuelve el resultado
 	}
 
-	public function agregar_usuario($data)
-	{
-		$this->db->insert('usuario',$data);
-	}
+	  public function insertar_usuario($data) {
+        return $this->db->insert('usuario', $data);
+    }
 
 	public function lista_usuarios()
 		{

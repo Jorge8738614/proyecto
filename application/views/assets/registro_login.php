@@ -10,13 +10,13 @@
                     </div>
                     <div class="form-group">
                         <label for="telefono">Teléfono</label>
-                        <input type="tel" class="form-control" id="celular" placeholder="* Escriba su número telefónico" name="telefono" required>
+                        <input type="tel" class="form-control" id="telefono" placeholder="* Escriba su número telefónico" name="telefono" required>
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input type="password" class="form-control" id="password" placeholder="* Escriba su password" name="password" required>
                     </div>
-                      <div class="form-group col-md-6">
+                    <div class="form-group col-md-6">
                         <label for="cargo">Cargo</label>
                         <select class="form-control" id="cargo" name="cargo" required>
                             <option value="" disabled selected>* Seleccione su cargo</option>
@@ -33,7 +33,7 @@
                     <br>
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary btn-md">Registrar</button>
-                        <a href="http://localhost/proyecto/Clogin/salir" class="btn btn-danger">Cancelar</a>   
+                        <a href="<?php echo base_url(); ?>Clogin/salir" class="btn btn-danger">Cancelar</a>   
                     </div>
                 </form>
             </div>

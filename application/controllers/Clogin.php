@@ -70,23 +70,26 @@ class Clogin extends CI_Controller {
 		}
 	}
 
-		public function agregarbd()
-		{
-		    $nombre_completo = strtoupper($_POST['nombre_completo'] ?? '');
-		    $celular = strtoupper($_POST['celular'] ?? '');
-		    $password = strtoupper($_POST['password'] ?? '');
-		    $alias = $_POST['alias'] ?? '';
 
-		    $data = [
-		        'nombre_completo' => $nombre_completo,
-		        'celular' => $celular,
-		        'password' => $password,
-		        'alias' => $alias,
-		    ];
+	public function agregarbd() {
+        // Obtener datos del formulario
+        $data = array(
+            'nombre_completo' => $this->input->post('nombre_completo'),
+            'celular' => $this->input->post('celular'),
+            'password' => password_hash($this->input->post('password'), PASSWORD_BCRYPT), // Encriptar la contraseña
+            'cargo' => $this->input->post('cargo'),
+            'alias' => $this->input->post('alias')
+        );
 
-		    $this->Musuario->agregar_usuario($data);
-		    header("Location: http://localhost/proyecto/Clogin");
-		}
+        // Llamar al método del modelo para insertar los datos
+        if ($this->Musuario->insertar_usuario($data)) {
+            // Redirigir o mostrar un mensaje de éxito
+            redirect('Clogin/vista_usuarios'); // Cambia esto según tu ruta
+        } else {
+            // Mostrar un mensaje de error
+            echo "Error al registrar el usuario.";
+        }
+    }
 
 		public function vista_usuarios()
 		{
