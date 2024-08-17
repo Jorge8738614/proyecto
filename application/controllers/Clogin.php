@@ -88,21 +88,20 @@ class Clogin extends CI_Controller {
 		    header("Location: http://localhost/proyecto/Clogin");
 		}
 
-		 public function vista_usuarios()
-	    {
-	        // Obtener la lista de usuarios desde el modelo
-	        $lista = $this->Musuario->lista_usuario();
+		public function vista_usuarios()
+		{
+		    // Obtener la lista de usuarios desde el modelo
+		    $lista = $this->Musuario->lista_usuarios();  // Asegúrate de usar el nombre correcto de la función
 
-	        // Preparar los datos para pasarlos a la vista
-	        $data = array('usuarios' => $lista);
+		    // Preparar los datos para pasarlos a la vista
+		    $data = array('usuarios' => $lista);
 
-	        // Cargar las vistas y pasar los datos
-	        $this->load->view('assets/header');
-	        $this->load->view('assets/menu');
-	        $this->load->view('usuario/lista_usuario', $data);  // Vista con la lista de usuarios
-	        $this->load->view('assets/footer');
-	    }
-
+		    // Cargar las vistas y pasar los datos
+		    $this->load->view('assets/header');
+		    $this->load->view('assets/menu');
+		    $this->load->view('assets/lista_usuario', $data);  // Vista con la lista de usuarios
+		    $this->load->view('assets/footer');
+		}
 
 
 

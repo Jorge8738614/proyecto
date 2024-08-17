@@ -19,12 +19,12 @@ class Musuario extends CI_Model {
 	}
 
 	public function lista_usuarios()
-	{
-		$this->db->select('*');
-		$this->db->from('usuario');
-		$this->db->where('estado_usuario','1');
-		return $this->db->get(); //devuelve el resultado
-	}
+		{
+		    $this->db->select('*');
+		    $this->db->from('usuario');
+		    $this->db->where('estado_usuario', 1);  // Ajusta aquí si el nombre es diferente
+		    return $this->db->get(); // Devuelve el resultado
+		}
 
 	public function get_usuario_sesion($id_usuario)
 	{

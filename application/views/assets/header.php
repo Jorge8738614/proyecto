@@ -36,6 +36,36 @@
         .text-right a {
             color: #007bff;
         }
+
+        /* CSS personalizado para tabla de usuarios */
+        .table th, .table td {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .table th {
+            background-color: #343a40; /* Color de fondo para el encabezado de la tabla */
+            color: #ffffff; /* Color del texto en el encabezado */
+        }
+
+        .table tbody tr:nth-child(even) {
+            background-color: #f2f2f2; /* Color de fondo para las filas pares */
+        }
+
+        .table tbody tr:hover {
+            background-color: #e9ecef; /* Color de fondo cuando se pasa el ratón sobre una fila */
+        }
+
+        .btn {
+            margin-right: 5px; /* Espaciado entre botones */
+        }
+
+        .container {
+            max-width: 1200px; /* Ancho máximo del contenedor */
+        }
+
+      /* Finalizacion CSS personalizado para tabla de usuarios */
+
     </style>
 </head>
 <body> 
