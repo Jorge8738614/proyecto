@@ -2,14 +2,18 @@
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8 col-sm-10">
-                <h5 class="text-center mb-4">REGISTRAR EN EL SISTEMA</h5>
+                <h5 class="text-center mb-4">MODIFICAR USUARIO</h5>
                 <form method="POST" action="<?php echo base_url();?>Clogin/agregarbd" autocomplete="off">
                     <div class="form-group">
                         <label for="nombre_completo">Nombre(s)</label>
                         <input type="text" class="form-control" id="nombre_completo" placeholder="* Escriba su nombre" name="nombre_completo" required>
                     </div>
                     <div class="form-group">
-                        <label for="telefono">Teléfono</label>
+                        <label for="nombre_completo">Apellido(s)</label>
+                        <input type="text" class="form-control" id="nombre_completo" placeholder="* Escriba su nombre" name="nombre_completo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Celular</label>
                         <input type="tel" class="form-control" id="telefono" placeholder="* Escriba su número telefónico" name="telefono" required>
                     </div>
                     <div class="form-group">

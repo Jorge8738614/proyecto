@@ -8,7 +8,7 @@
  <!-- Footer Section -->
     <footer class="footer mt-auto py-3 bg-light">
         <div class="container text-center">
-            <span class="text-muted">&copy; 2024 SISTEMA. Todos los derechos reservados.</span>
+            <span class="text-muted">&copy; 2024 SISTEMA.</span>
         </div>
     </footer>
 

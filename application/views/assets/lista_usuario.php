@@ -36,13 +36,14 @@
                 <td><?php echo $row->id_rol; ?></td>
                 <td><?php echo formatearFecha($row->fecha_creacion); ?></td>
                 <!-- Opcional: acciones para modificar, eliminar y deshabilitar -->
-                <!--
+                
                 <td>
                     <?php echo form_open_multipart("usuario/modificar"); ?>
                     <input type="hidden" name="idusuario" value="<?php echo $row->idUsuario; ?>">
                     <button type="submit" class="btn btn-success">Modificar</button>
                     <?php echo form_close(); ?>
                 </td>
+                <!--
                 <td>
                     <?php echo form_open_multipart("usuario/eliminarbd"); ?>
                     <input type="hidden" name="idusuario" value="<?php echo $row->idUsuario; ?>">
