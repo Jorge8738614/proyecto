@@ -4,8 +4,9 @@
 
     <!-- Botones opcionales para ver deshabilitados y agregar usuario -->
     <div class="mb-4">
-        <a href="<?php echo base_url(); ?>index.php/usuario/deshabilitados" class="btn btn-warning mr-2">VER DESHABILITADOS</a>
-        <a href="<?php echo base_url(); ?>index.php/usuario/agregar" class="btn btn-primary">Agregar Usuario</a>
+        <a href="<?php echo base_url(); ?>index.php/usuario/deshabilitados">Usuario deshabilitados</a>
+        <br>
+        <a href="http://localhost/proyecto/Clogin/agregar" class="text-center">Registrar Usuario</a>
     </div>
 
     <table class="table table-striped table-bordered">
