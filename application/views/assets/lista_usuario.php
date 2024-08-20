@@ -38,7 +38,7 @@
                 <!-- Opcional: acciones para modificar, eliminar y deshabilitar -->
                 
                 <td>
-                    <?php echo form_open_multipart("usuario/modificar"); ?>
+                    <?php echo form_open_multipart("Clogin/modificar"); ?>
                     <input type="hidden" name="idusuario" value="<?php echo $row->idUsuario; ?>">
                     <button type="submit" class="btn btn-success">Modificar</button>
                     <?php echo form_close(); ?>

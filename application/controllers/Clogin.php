@@ -33,6 +33,14 @@ class Clogin extends CI_Controller {
 	  $this->load->view('assets/footer');
 	}
 
+	public function modificar()
+	{
+		
+	  $this->load->view('assets/header_login');
+	  $this->load->view('assets/modificar_login');
+	  $this->load->view('assets/footer');
+	}
+
 	public function validarusuario()
 	{
 		$alias=$_POST['alias'];

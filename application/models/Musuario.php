@@ -34,5 +34,19 @@ class Musuario extends CI_Model {
 		return $resultados -> result(); //devuelve el resultado		
 	}
 
+	public function recuperar_usuario($id_usuario)
+	{
+		$this->db->select('*');
+		$this->db->from('usuario');
+		$this->db->where('id_usuario',$id_usuario);  // Ajusta aquí si el nombre es diferente
+		return $this->db->get(); // Devuelve el re
+	}
+
+	public function modificar_usuario($id_usuario,$data)
+	{
+		$this->db->where('id_usuario',$id_usuario);
+		$this->db->update('usuario',$data);
+	}
+
 
 }
