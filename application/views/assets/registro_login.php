@@ -9,8 +9,12 @@
                         <input type="text" class="form-control" id="nombre_completo" placeholder="* Escriba su nombre" name="nombre_completo" required>
                     </div>
                     <div class="form-group">
-                        <label for="telefono">Teléfono</label>
-                        <input type="tel" class="form-control" id="telefono" placeholder="* Escriba su número telefónico" name="telefono" required>
+                        <label for="nombre_completo">Apellido(s)</label>
+                        <input type="text" class="form-control" id="apellido" placeholder="* Escriba su primer apellido" name="apellido" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">celular</label>
+                        <input type="tel" class="form-control" id="celular" placeholder="* Escriba su número telefónico" name="celular" required>
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
@@ -35,7 +39,8 @@
                         <button type="submit" class="btn btn-primary btn-md">Registrar</button>
                         <a href="<?php echo base_url(); ?>Clogin/salir" class="btn btn-danger">Cancelar</a>   
                     </div>
-                </form>
+            </form>
+
             </div>
         </div>
     </div>

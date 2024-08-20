@@ -83,6 +83,7 @@ class Clogin extends CI_Controller {
         // Obtener datos del formulario
         $data = array(
             'nombre_completo' => $this->input->post('nombre_completo'),
+            'apellido' => $this->input->post('apellido'),
             'celular' => $this->input->post('celular'),
             'password' => password_hash($this->input->post('password'), PASSWORD_BCRYPT), // Encriptar la contraseña
             'cargo' => $this->input->post('cargo'),

@@ -25,6 +25,8 @@ class Musuario extends CI_Model {
 		    return $this->db->get(); // Devuelve el resultado
 		}
 
+//misma funciones para obtener el id usuario
+		
 	public function get_usuario_sesion($id_usuario)
 	{
 		$this->db->select('*');

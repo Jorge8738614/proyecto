@@ -14,8 +14,8 @@
             <tr>
                 <th>No.</th>
                 <th>Nombre Completo</th>
+                <th>Apellido</th>
                 <th>Alias</th>
-                <th>Email</th>
                 <th>Rol</th>
                 <th>Fecha Creación</th>
                 <th>Modificar</th>
@@ -31,25 +31,26 @@
             <tr>
                 <td><?php echo $contador; ?></td>
                 <td><?php echo $row->nombre_completo; ?></td>
+                <td><?php echo $row->apellido; ?></td>
                 <td><?php echo $row->alias; ?></td>
-                <td><?php echo $row->email; ?></td>
                 <td><?php echo $row->id_rol; ?></td>
                 <td><?php echo formatearFecha($row->fecha_creacion); ?></td>
                 <!-- Opcional: acciones para modificar, eliminar y deshabilitar -->
                 
                 <td>
                     <?php echo form_open_multipart("Clogin/modificar"); ?>
-                    <input type="hidden" name="idusuario" value="<?php echo $row->idUsuario; ?>">
+                   <input type="hidden" name="idusuario" value="<?php echo $row->id_usuario; ?>">
                     <button type="submit" class="btn btn-success">Modificar</button>
                     <?php echo form_close(); ?>
                 </td>
-                <!--
+               
                 <td>
                     <?php echo form_open_multipart("usuario/eliminarbd"); ?>
-                    <input type="hidden" name="idusuario" value="<?php echo $row->idUsuario; ?>">
+                    <input type="hidden" name="idusuario" value="<?php echo $row->id_usuario; ?>">
                     <button type="submit" class="btn btn-danger">Eliminar</button>
                     <?php echo form_close(); ?>
                 </td>
+                 <!--
                 <td>
                     <?php echo form_open_multipart("usuario/deshabilitarbd"); ?>
                     <input type="hidden" name="idusuario" value="<?php echo $row->idUsuario; ?>">
