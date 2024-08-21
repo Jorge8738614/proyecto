@@ -33,15 +33,9 @@ class Clogin extends CI_Controller {
 	  $this->load->view('assets/footer');
 	}
 
-	public function modificar()
-	{
-		
-	  $this->load->view('assets/header_login');
-	  $this->load->view('assets/modificar_login');
-	  $this->load->view('assets/footer');
-	}
 
-	public function validarusuario()
+
+	public function validarusuario() 
 	{
 		$alias=$_POST['alias'];
 		$password=$_POST['password'];
@@ -115,6 +109,16 @@ class Clogin extends CI_Controller {
 		    $this->load->view('assets/footer');
 		}
 
+// revisar las funciones de modificar 
+		
+		public function modificar()
+		{
+			$id_usuario=$_POST['id_usuario'];
+			$data['info_usuario']=$this->Musuario->recuperar_usuario($id_usuario);	
+			$this->load->view('assets/header_login');
+			$this->load->view('assets/modificar_login');
+			$this->load->view('assets/footer');
+		}
 
 
 	public function salir()

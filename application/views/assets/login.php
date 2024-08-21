@@ -40,7 +40,6 @@
             <div class="login-form text-center">
                 <h5>INGRESO AL SISTEMA</h5>
 
-
                 <form method="POST" action="<?php echo base_url();?>Clogin/validarusuario">
                     <div class="form-group">
                         <label>Alias De Usuario</label>
@@ -69,9 +68,6 @@
                     <div class="text-right mt-3">
                         <p class="mb-1">
                             <a href="forgot-password.html">Cambiar contraseña</a>
-                        </p>
-                        <p class="mb-0">
-                            <a href="http://localhost/proyecto/Clogin/agregar" class="text-center">Registrar Usuario</a>
                         </p>
                     </div>
                 </form>
