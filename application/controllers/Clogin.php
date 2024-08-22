@@ -3,36 +3,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Clogin extends CI_Controller {
 
-	public function __construct()
-	{
-		parent::__construct();
-		$this->load->model("Musuario");
-	}
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model("Musuario");
+    }
 
-	public function menu()
-	{
-		
-	  $this->load->view('assets/header');
-	  $this->load->view('assets/menu');
-	  $this->load->view('assets/footer');
-	}
+    public function menu()
+		{
+			
+		  $this->load->view('assets/header');
+		  $this->load->view('assets/menu');
+		  $this->load->view('assets/footer');
+		}
 
-	public function agregar()
-	{
-		
-	  $this->load->view('assets/header_login');
-	  $this->load->view('assets/registro_login');
-	  $this->load->view('assets/footer');
-	}
+		public function agregar()
+		{
+			
+		  $this->load->view('assets/header_login');
+		  $this->load->view('assets/registro_login');
+		  $this->load->view('assets/footer');
+		}
 
-	public function index()
-	{
-		
-	  $this->load->view('assets/header_login');
-	  $this->load->view('assets/login');
-	  $this->load->view('assets/footer');
-	}
-
+		public function index()
+		{
+			
+		  $this->load->view('assets/header_login');
+		  $this->load->view('assets/login');
+		  $this->load->view('assets/footer');
+		}
 
 
 	public function validarusuario() 
@@ -73,75 +72,89 @@ class Clogin extends CI_Controller {
 	}
 
 
-	public function agregarbd() {
-        // Obtener datos del formulario
+
+    public function agregarbd() {
         $data = array(
             'nombre_completo' => $this->input->post('nombre_completo'),
             'apellido' => $this->input->post('apellido'),
             'celular' => $this->input->post('celular'),
-            'password' => password_hash($this->input->post('password'), PASSWORD_BCRYPT), // Encriptar la contraseña
+            'password' => password_hash($this->input->post('password'), PASSWORD_BCRYPT),
             'cargo' => $this->input->post('cargo'),
             'alias' => $this->input->post('alias')
         );
 
-        // Llamar al método del modelo para insertar los datos
         if ($this->Musuario->insertar_usuario($data)) {
-            // Redirigir o mostrar un mensaje de éxito
-            redirect('Clogin/vista_usuarios'); // Cambia esto según tu ruta
+            redirect('Clogin/vista_usuarios');
         } else {
-            // Mostrar un mensaje de error
             echo "Error al registrar el usuario.";
         }
     }
 
-		public function vista_usuarios()
-		{
-		    // Obtener la lista de usuarios desde el modelo
-		    $lista = $this->Musuario->lista_usuarios();  // Asegúrate de usar el nombre correcto de la función
+    public function vista_usuarios()
+    {
+        $lista = $this->Musuario->lista_usuarios();
+        $data = array('usuarios' => $lista);
+        $this->load->view('assets/header');
+        $this->load->view('assets/menu');
+        $this->load->view('assets/lista_usuario', $data);
+        $this->load->view('assets/footer');
+    }
 
-		    // Preparar los datos para pasarlos a la vista
-		    $data = array('usuarios' => $lista);
-
-		    // Cargar las vistas y pasar los datos
-		    $this->load->view('assets/header');
-		    $this->load->view('assets/menu');
-		    $this->load->view('assets/lista_usuario', $data);  // Vista con la lista de usuarios
-		    $this->load->view('assets/footer');
-		}
-
-// revisar las funciones de modificar 
-		
-		public function modificar()
-		{
-			$id_usuario=$_POST['id_usuario'];
-			$data['info_usuario']=$this->Musuario->recuperar_usuario($id_usuario);	
-			$this->load->view('assets/header_login');
-			$this->load->view('assets/modificar_login');
-			$this->load->view('assets/footer');
-		}
-
-
-	public function salir()
+	public function modificar($id_usuario)
 	{
-		$this->session->sess_destroy();
-		header("Location: http://localhost/proyecto/Clogin");
-	}
-
-
-	public function control_ingreso()
-	{
-		if($this->session->userdata('alias'))
-		{
-			header("Location: http://localhost/proyecto/Clogin/menu");
+		 if ($id_usuario) {
+		      // Obtener información del usuario basado en el ID
+		     $data['info_usuario'] = $this->Musuario->recuperar_usuario($id_usuario);
+		        
+		        // Verificar si se obtuvo algún dato
+		        if ($data['info_usuario']->num_rows() > 0) {
+		            $this->load->view('assets/header');
+		            $this->load->view('assets/modificar_login', $data);
+		            $this->load->view('assets/footer');
+		        } else {
+		            // Redirigir si no se encuentra el usuario
+		            redirect('Clogin/vista_usuarios');
+		        }
+		    } else {
+		        // Redirigir si el ID no se pasa
+		        redirect('Clogin/vista_usuarios');
+		    }
 		}
-		else
-		{
-			header("Location: http://localhost/proyecto/Clogin/index");
-		}
-	}
 
-	
+    public function actualizar()
+    {
+        $id_usuario = $this->input->post('id_usuario');
+        $data = array(
+            'nombre_completo' => $this->input->post('nombre_completo'),
+            'apellido' => $this->input->post('apellido'),
+            'celular' => $this->input->post('celular'),
+            'password' => password_hash($this->input->post('password'), PASSWORD_BCRYPT),
+            'cargo' => $this->input->post('cargo'),
+            'alias' => $this->input->post('alias')
+        );
 
+        if ($this->Musuario->modificar_usuario($id_usuario, $data)) {
+            redirect('Clogin/vista_usuarios');
+        } else {
+            echo "Error al modificar el usuario.";
+        }
+    }
 
+    public function salir()
+    {
+        $this->session->sess_destroy();
+        redirect('Clogin');
+    }
 
+    public function control_ingreso()
+    {
+        if($this->session->userdata('alias'))
+        {
+            redirect('Clogin/menu');
+        }
+        else
+        {
+            redirect('Clogin/index');
+        }
+    }
 }

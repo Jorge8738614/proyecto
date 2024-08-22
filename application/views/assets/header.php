@@ -64,6 +64,8 @@
             max-width: 1200px; /* Ancho máximo del contenedor */
         }
 
+        
+
       /* Finalizacion CSS personalizado para tabla de usuarios */
 
     </style>
