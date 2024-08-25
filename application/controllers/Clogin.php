@@ -20,7 +20,7 @@ class Clogin extends CI_Controller {
 		public function agregar()
 		{
 			
-		  $this->load->view('assets/header_login');
+		  $this->load->view('assets/header');
 		  $this->load->view('assets/registro_login');
 		  $this->load->view('assets/footer');
 		}
@@ -100,30 +100,35 @@ class Clogin extends CI_Controller {
         $this->load->view('assets/footer');
     }
 
-	public function modificar($id_usuario)
+	public function modificar()
 	{
-		 if ($id_usuario) {
-		      // Obtener información del usuario basado en el ID
-		     $data['info_usuario'] = $this->Musuario->recuperar_usuario($id_usuario);
+		 $id_usuario = trim($_GET['id']);
+		 if ($id_usuario!='') 
+		 {
+		      
+		    $data = array("usuario" => $this->Musuario->recuperar_usuario($id_usuario));
 		        
-		        // Verificar si se obtuvo algún dato
-		        if ($data['info_usuario']->num_rows() > 0) {
+		        //print_r($data);
+		        if (sizeof($data) > 0) 
+		        {
 		            $this->load->view('assets/header');
-		            $this->load->view('assets/modificar_login', $data);
+		            $this->load->view('assets/modificar_login', $data );
 		            $this->load->view('assets/footer');
-		        } else {
-		            // Redirigir si no se encuentra el usuario
+		        } 
+		        else {
+		            
 		            redirect('Clogin/vista_usuarios');
 		        }
 		    } else {
-		        // Redirigir si el ID no se pasa
+		        
 		        redirect('Clogin/vista_usuarios');
 		    }
-		}
+	}
 
     public function actualizar()
     {
-        $id_usuario = $this->input->post('id_usuario');
+        echo $id_usuario = trim($_POST['id']);;
+        
         $data = array(
             'nombre_completo' => $this->input->post('nombre_completo'),
             'apellido' => $this->input->post('apellido'),
@@ -133,12 +138,26 @@ class Clogin extends CI_Controller {
             'alias' => $this->input->post('alias')
         );
 
-        if ($this->Musuario->modificar_usuario($id_usuario, $data)) {
-            redirect('Clogin/vista_usuarios');
-        } else {
-            echo "Error al modificar el usuario.";
-        }
+   
+        $this->Musuario->modificar_usuario($id_usuario, $data);
+         redirect('Clogin/vista_usuarios');
     }
+
+  	public function eliminarbd()	
+	{
+	    if (isset($_GET['id'])) { // Cambia $_POST a $_GET
+	        $id_usuario = $_GET['id'];
+	        $data['estado_usuario'] = '0';
+	        $this->Musuario->modificar_usuario($id_usuario, $data);
+	        redirect('Clogin/vista_usuarios');
+	    } else {
+	        // Manejar el caso donde 'id' no esté definido
+	        echo "Error: No se ha proporcionado el ID del usuario.";
+	        // Opcionalmente, redirigir a otra página o mostrar un mensaje de error.
+	    }
+	}
+
+
 
     public function salir()
     {
