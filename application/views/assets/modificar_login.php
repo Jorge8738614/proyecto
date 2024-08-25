@@ -1,12 +1,18 @@
 <!-- Modificar Usuario Section -->
 <div class="container mt-5">
+    <h5 style="margin-bottom: 1px;">Sistema / Usuario / Modificar Usuario </h5>
     <div class="row justify-content-center">
         <div class="col-lg-6 col-md-8 col-sm-10">
             <h5 class="text-center mb-4">MODIFICAR USUARIO</h5>
-            <?php if ($info_usuario->num_rows() > 0): ?>
-            <?php foreach($info_usuario->result() as $row): ?>
+            <?php 
+                
+              if (sizeof($usuario) > 0): ?>
+            <?php foreach($usuario as $row): ?>
+           
             <form method="POST" action="<?php echo base_url(); ?>Clogin/actualizar" autocomplete="off">
-                <input type="hidden" name="id_usuario" value="<?php echo $row->id_usuario; ?>">
+           
+                <input type="text" name="id" value="<?php echo $row->id_usuario; ?>"  style="display: none;">
+
                 <div class="form-group">
                     <label for="nombre_completo">Nombre(s)</label>
                     <input type="text" class="form-control" id="nombre_completo" placeholder="* Escriba su nombre" name="nombre_completo" value="<?php echo $row->nombre_completo; ?>" required>
