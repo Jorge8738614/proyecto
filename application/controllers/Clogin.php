@@ -27,11 +27,12 @@ class Clogin extends CI_Controller {
 
 		public function index()
 		{
-			
+
 		  $this->load->view('assets/header_login');
 		  $this->load->view('assets/login');
 		  $this->load->view('assets/footer');
-		}
+}
+
 
 
 	public function validarusuario() 
@@ -176,4 +177,42 @@ class Clogin extends CI_Controller {
             redirect('Clogin/index');
         }
     }
+
+    public function panel()
+	{
+		if($this->session->userdata('login'))
+		{
+			if($this->session->userdata('tipo')=='admin')
+			{
+				//el usr ya esta logueado
+				redirect('estudiante/index','refresh');
+			}
+			else
+			{
+				redirect('estudiante/guest','refresh');
+			}
+		}
+		else
+		{
+			//usuario no esta logueado
+			redirect('usuarios/index/3','refresh');
+		}
+	}
+
+	public function buscar()
+	{
+	
+
+		$txt_buscar = $_GET["txt_buscar"];
+		$data= array(
+			"txt_buscar" => $txt_buscar,
+			"usuarios" => $this -> Musuario ->buscar_usuario($txt_buscar),
+		);
+
+		  $this->load->view('assets/header');
+		  $this->load->view('assets/lista_usuario_busqueda',$data);
+		  $this->load->view('assets/footer');
+
+	}
+
 }

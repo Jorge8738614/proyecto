@@ -51,5 +51,14 @@ class Musuario extends CI_Model {
         $this->db->update('usuario',$data);
     }
 
+    public function buscar_usuario($txt_buscar){
+        $this->db->select('*');
+        $this->db->from('usuario');
+        $this->db->where('nombre_completo',$txt_buscar);
+        $this->db->where('estado_usuario',1);
+        $resultados = $this->db->get();
+         return $resultados -> result(); 
+    }
+
 
 }

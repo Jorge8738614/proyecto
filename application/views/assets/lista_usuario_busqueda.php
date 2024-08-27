@@ -21,7 +21,8 @@
             </td>
         </tr>
     </table>
-
+    <h4>Resultado de la busqueda para ' <?php echo $txt_buscar; ?> '</h4>
+    <a href="<?php echo base_url(); ?>Clogin/vista_usuarios">Listar usuarios</a>
      <table class="table table-striped table-bordered table-hover">
         <thead class="thead-dark">  
             <tr>
@@ -38,7 +39,7 @@
         <tbody>
             <?php
             $contador = 1;
-            foreach ($usuarios->result() as $row) {  
+            foreach ($usuarios as $row) {  
             ?>
             <tr>
                 <td><?php echo $contador; ?></td>
