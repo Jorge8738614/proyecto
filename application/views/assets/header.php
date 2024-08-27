@@ -6,73 +6,45 @@
   <title> SISTEMA </title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="<?php echo base_url(); ?>bootstrap/css/bootstrap.css">
- 
   <script src="<?php echo base_url();?>bootstrap/js/bootstrap.js"></script>
   <!-- jQuery -->
   <script src="<?php echo base_url(); ?>bootstrap/js/jquery.js"></script>
-  <style>
-        body {
-            background-color: #f7f7f7;
-        }
-        .login-container {
-            margin-top: 100px;
-        }
-        .login-form {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .login-form h5 {
-            margin-bottom: 30px;
-        }
-        .form-control {
-            border-radius: 20px;
-        }
-        .btn-primary {
-            border-radius: 20px;
-            padding: 10px 20px;
-        }
-        .text-right a {
-            color: #007bff;
-        }
+   <!-- template startmin-->
+         <!-- Bootstrap Core CSS -->
+        <link href="<?php echo base_url(); ?>startmin/css/bootstrap.min.css" rel="stylesheet">
 
-        /* CSS personalizado para tabla de usuarios */
-        .table th, .table td {
-            text-align: center;
-            vertical-align: middle;
-        }
+        <!-- MetisMenu CSS -->
+        <link href="<?php echo base_url(); ?>startmin/css/metisMenu.min.css" rel="stylesheet">
 
-        .table th {
-            background-color: #343a40; /* Color de fondo para el encabezado de la tabla */
-            color: #ffffff; /* Color del texto en el encabezado */
-        }
+        <!-- Timeline CSS -->
+        <link href="<?php echo base_url(); ?>startmin/css/timeline.css" rel="stylesheet">
 
-        .table tbody tr:nth-child(even) {
-            background-color: #f2f2f2; /* Color de fondo para las filas pares */
-        }
+        <!-- Custom CSS -->
+        <link href="<?php echo base_url(); ?>startmin/css/startmin.css" rel="stylesheet">
 
-        .table tbody tr:hover {
-            background-color: #e9ecef; /* Color de fondo cuando se pasa el ratón sobre una fila */
-        }
+        <!-- Morris Charts CSS -->
+        <link href="<?php echo base_url(); ?>startmin/css/morris.css" rel="stylesheet">
 
-        .btn {
-            margin-right: 5px; /* Espaciado entre botones */
-        }
-
-        .container {
-            max-width: 1200px; /* Ancho máximo del contenedor */
-        }
-
-        
-
-      /* Finalizacion CSS personalizado para tabla de usuarios */
-
-    </style>
+        <!-- Custom Fonts -->
+        <link href="<?php echo base_url(); ?>startmin/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
 </head>
 <body> 
 <div class="row" style="margin:0px; background: ;" > 
+  <?php
+//print_r($this ->session);
+//echo "</br> este es el id usuario : ";
+$id_usuario_sesion = $this->session->userdata('id_usuario_sesion');
+//echo $id_usuario_sesion; echo "</br>";
+
+if ($id_usuario_sesion =="") {
+  header("Location: http://localhost/proyecto/Clogin/index");
+}
+if ($id_usuario_sesion>0) {
+ // echo "usuario logeado";
   
+}
+?>
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="background:orange; height: 60px; display: flex; justify-content: space-between; align-items: center; padding: 0 20px;">
     <h4>MENU DEL SISTEMA</h4> 
 
@@ -103,8 +75,8 @@
             <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
                 <div class="sidebar-sticky" style="background:;" >
                     <ul class="nav flex-column">
-                        <li class="nav-item"  >
-                            <a class="nav-link active" href="#">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
                                 <span data-feather="home"></span>
                                 Inicio
                             </a>

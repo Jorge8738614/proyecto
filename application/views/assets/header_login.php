@@ -64,7 +64,21 @@
 
     </style>
 </head>
+<?php
+//print_r($this ->session);
+//echo "</br> este es el id usuario : ";
+$id_usuario_sesion = $this->session->userdata('id_usuario_sesion');
+//echo $id_usuario_sesion; echo "</br>";
 
+if ($id_usuario_sesion =="") {
+  //echo "el objeto esta vacio";
+}
+if ($id_usuario_sesion>0) {
+ // echo "usuario logeado";
+  header("Location: http://localhost/proyecto/Clogin/menu");
+}
+
+ ?>
 <body>
     <!-- Header Section -->
     
