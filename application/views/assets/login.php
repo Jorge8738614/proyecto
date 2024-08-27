@@ -79,6 +79,8 @@
         <div class="col-lg-6 col-md-8 col-sm-10 col-xs-12">
             <div class="login-form text-center">
                 <h5>INGRESO AL SISTEMA</h5>
+                <div>
+                </div>
 
                <form method="POST" action="<?php echo base_url();?>Clogin/validarusuario">
                     <div class="form-group">
