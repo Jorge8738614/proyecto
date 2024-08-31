@@ -10,7 +10,7 @@ class Mproducto extends CI_Model {
     public function lista_productos() {
         $this->db->select('*');
         $this->db->from('producto');
-        $this->db->where('producto_estado', '1'); // Solo productos activos
+        $this->db->where('producto_estado', 1); // Solo productos activos
         $query = $this->db->get();
         return $query->result();
     }

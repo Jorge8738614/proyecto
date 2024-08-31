@@ -5,7 +5,7 @@
     <table class="table">
         <tr>
             <td style="width: 70%;">
-                <form method="GET" action="<?php echo base_url(); ?>Clogin/buscar">
+                <form method="GET" action="<?php echo base_url(); ?>Cusuario/buscar">
                     <input name="txt_buscar" type="text" placeholder="Buscar Usuarios" class="form-control" >   
             </td>
             <td>
@@ -14,10 +14,10 @@
             </td>
 
             <td>
-                <a class="btn btn-primary btn-sm" href="<?php echo base_url(); ?>index.php/usuario/deshabilitados"> Deshabilitados </a>
+                <a class="btn btn-primary btn-sm" href="<?php echo base_url(); ?>index.php/Cusuario/deshabilitados"> Deshabilitados </a>
             </td>
             <td>
-                <a class="btn btn-primary btn-sm" href="http://localhost/proyecto/Clogin/agregar" class="text-center">Registrar</a>
+                <a class="btn btn-primary btn-sm" href="http://localhost/proyecto/Cusuario/agregar" class="text-center">Registrar</a>
             </td>
         </tr>
     </table>
@@ -37,7 +37,8 @@
         </thead>
         <tbody>
             <?php
-            $contador = 1;
+            //$contador = 1;
+             $contador = $this->uri->segment(3) ? $this->uri->segment(3) : 1; // Ajusta el contador en función de la paginación
             foreach ($usuarios->result() as $row) {  
             ?>
             <tr>
@@ -50,14 +51,14 @@
                 <!-- Opcional: acciones para modificar, eliminar y deshabilitar -->
                 
                 <td>
-                    <form method="GET" action="<?php echo base_url(); ?>Clogin/modificar">
+                    <form method="GET" action="<?php echo base_url(); ?>Cusuario/modificar">
 				    <input type="text" name="id" value="<?php echo $row->id_usuario; ?>" style="display: none;">
 				    <button type="submit" class="btn btn-success">Modificar</button>
 				    </form>
 				    
 				</td>
                 <td>
-                    <form method="GET" action="<?php echo base_url(); ?>Clogin/eliminarbd">
+                    <form method="GET" action="<?php echo base_url(); ?>Cusuario/eliminarbd">
                     <input type="text" name="id" value="<?php echo $row->id_usuario; ?>" style="display: none;">
                     <button type="submit" class="btn btn-danger">Eliminar</button>
                     </form>
@@ -70,5 +71,8 @@
             ?>
         </tbody>
     </table>
+    <div class="pagination">
+        <?php echo $this->pagination->create_links(); ?>
+    </div>
 </div>
 

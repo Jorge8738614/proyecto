@@ -17,14 +17,6 @@ class Clogin extends CI_Controller {
 		  $this->load->view('assets/footer');
 		}
 
-		public function agregar()
-		{
-			
-		  $this->load->view('assets/header');
-		  $this->load->view('assets/registro_login');
-		  $this->load->view('assets/footer');
-		}
-
 		public function index()
 		{
 
@@ -72,94 +64,6 @@ class Clogin extends CI_Controller {
 		}
 	}
 
-
-
-    public function agregarbd() {
-        $data = array(
-            'nombre_completo' => $this->input->post('nombre_completo'),
-            'apellido' => $this->input->post('apellido'),
-            'celular' => $this->input->post('celular'),
-            'password' => password_hash($this->input->post('password'), PASSWORD_BCRYPT),
-            'cargo' => $this->input->post('cargo'),
-            'alias' => $this->input->post('alias')
-        );
-
-        if ($this->Musuario->insertar_usuario($data)) {
-            redirect('Clogin/vista_usuarios');
-        } else {
-            echo "Error al registrar el usuario.";
-        }
-    }
-
-    public function vista_usuarios()
-    {
-        $lista = $this->Musuario->lista_usuarios();
-        $data = array('usuarios' => $lista);
-        $this->load->view('assets/header');
-        $this->load->view('assets/menu');
-        $this->load->view('assets/lista_usuario', $data);
-        $this->load->view('assets/footer');
-    }
-
-	public function modificar()
-	{
-		 $id_usuario = trim($_GET['id']);
-		 if ($id_usuario!='') 
-		 {
-		      
-		    $data = array("usuario" => $this->Musuario->recuperar_usuario($id_usuario));
-		        
-		        //print_r($data);
-		        if (sizeof($data) > 0) 
-		        {
-		            $this->load->view('assets/header');
-		            $this->load->view('assets/modificar_login', $data );
-		            $this->load->view('assets/footer');
-		        } 
-		        else {
-		            
-		            redirect('Clogin/vista_usuarios');
-		        }
-		    } else {
-		        
-		        redirect('Clogin/vista_usuarios');
-		    }
-	}
-
-    public function actualizar()
-    {
-        echo $id_usuario = trim($_POST['id']);;
-        
-        $data = array(
-            'nombre_completo' => $this->input->post('nombre_completo'),
-            'apellido' => $this->input->post('apellido'),
-            'celular' => $this->input->post('celular'),
-            'password' => password_hash($this->input->post('password'), PASSWORD_BCRYPT),
-            'cargo' => $this->input->post('cargo'),
-            'alias' => $this->input->post('alias')
-        );
-
-   
-        $this->Musuario->modificar_usuario($id_usuario, $data);
-         redirect('Clogin/vista_usuarios');
-    }
-
-  	public function eliminarbd()	
-	{
-	    if (isset($_GET['id'])) { // Cambia $_POST a $_GET
-	        $id_usuario = $_GET['id'];
-	        $data['estado_usuario'] = '0';
-	        $this->Musuario->modificar_usuario($id_usuario, $data);
-	        redirect('Clogin/vista_usuarios');
-	    } else {
-	        // Manejar el caso donde 'id' no esté definido
-	        echo "Error: No se ha proporcionado el ID del usuario.";
-	        // Opcionalmente, redirigir a otra página o mostrar un mensaje de error.
-	    }
-	}
-
-
-
     public function salir()
     {
         $this->session->sess_destroy();
@@ -198,21 +102,4 @@ class Clogin extends CI_Controller {
 			redirect('usuarios/index/3','refresh');
 		}
 	}
-
-	public function buscar()
-	{
-	
-
-		$txt_buscar = $_GET["txt_buscar"];
-		$data= array(
-			"txt_buscar" => $txt_buscar,
-			"usuarios" => $this -> Musuario ->buscar_usuario($txt_buscar),
-		);
-
-		  $this->load->view('assets/header');
-		  $this->load->view('assets/lista_usuario_busqueda',$data);
-		  $this->load->view('assets/footer');
-
-	}
-
 }

@@ -45,7 +45,7 @@
                 <br>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary btn-md">Modificar</button>
-                    <a href="<?php echo base_url(); ?>Clogin/salir" class="btn btn-danger">Cancelar</a>   
+                    <a href="<?php echo base_url(); ?>Cusuario/vista_usuarios" class="btn btn-danger">Cancelar</a>   
                 </div>
             <?php endforeach; ?>
             <?php else: ?>

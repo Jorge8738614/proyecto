@@ -82,7 +82,7 @@ if ($id_usuario_sesion>0) {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="http://localhost/proyecto/Clogin/vista_usuarios">
+                            <a class="nav-link" href="http://localhost/proyecto/Cusuario/vista_usuarios">
                                 <span data-feather="file"></span>
                                 Usuarios
                             </a>

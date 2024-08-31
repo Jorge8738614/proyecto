@@ -45,7 +45,7 @@ class Cproducto extends CI_Controller {
         $this->load->view('assets/footer');
     }
 
-    public function modificar() {
+    public function modificar_producto() {
         $id_producto = trim($_GET['id']);
         if ($id_producto != '') {
             $data = array("producto" => $this->Mproducto->recuperar_producto($id_producto));

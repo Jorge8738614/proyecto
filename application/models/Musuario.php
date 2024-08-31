@@ -60,5 +60,31 @@ class Musuario extends CI_Model {
          return $resultados -> result(); 
     }
 
+    // Nuevo método para contar todos los usuarios
+    public function count_all_users()
+    {
+        $this->db->where('estado_usuario', 1); // Solo cuenta usuarios activos
+        return $this->db->count_all_results('usuario');
+    }
+
+    // Nuevo método para obtener usuarios con paginación
+    public function get_users($limit, $start)
+    {
+        //$this->db->select('*');
+       // $this->db->from('usuario');
+       // $this->db->where('estado_usuario', 1); // Solo usuarios activos
+       // $this->db->limit($limit, $start);
+       // $query = $this->db->get();
+       // return $query->result();
+
+    $this->db->select('nombre_completo, apellido, alias, id_rol, fecha_creacion, id_usuario');
+    $this->db->from('usuario');
+    $this->db->where('estado_usuario', 1);
+    $this->db->limit($limit, $start);
+    $query = $this->db->get();
+
+    return $query->result();
+    }
+
 
 }
