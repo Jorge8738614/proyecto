@@ -33,8 +33,8 @@
                 <td><?php echo $producto->producto_unidad_medida; ?></td>
                 <td><?php echo $producto->categoria_id; ?></td>
                 <td>
-                <form method="GET" action="<?php echo base_url(); ?>Cproducto/modificar_producto">
-                    <input type="text" name="id" value="<?php echo $row->id_producto; ?>" style="display: none;">
+                <form method="GET" action="<?php echo base_url(); ?> Cproducto/modificar_producto">
+                    <input type="text" name="id" value="<?php echo $producto->id_producto; ?>" style="display: none;">
                     <button type="submit" class="btn btn-success">Modificar</button>
                 </form>
                 </td>

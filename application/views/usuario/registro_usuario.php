@@ -3,7 +3,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8 col-sm-10">
                 <h5 class="text-center mb-4">REGISTRAR EN EL SISTEMA</h5>
-                <form method="POST" action="<?php echo base_url();?>Clogin/agregarbd" autocomplete="off">
+                <form method="POST" action="<?php echo base_url();?>Cusuario/agregarbd" autocomplete="off">
                     <div class="form-group">
                         <label for="nombre_completo">Nombre(s)</label>
                         <input type="text" class="form-control" id="nombre_completo" placeholder="* Escriba su nombre" name="nombre_completo" required>
@@ -37,7 +37,7 @@
                     <br>
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary btn-md">Registrar</button>
-                        <a href="<?php echo base_url(); ?>Clogin/salir" class="btn btn-danger">Cancelar</a>   
+                        <a href="<?php echo base_url(); ?>Cusuario/vista_usuarios" class="btn btn-danger">Cancelar</a>   
                     </div>
             </form>
 

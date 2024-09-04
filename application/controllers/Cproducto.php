@@ -13,35 +13,52 @@ class Cproducto extends CI_Controller {
         {
             
           $this->load->view('assets/header');
-          $this->load->view('assets/registro_producto');
+          $this->load->view('producto/registro_producto');
           $this->load->view('assets/footer');
         }
 
-    public function agregarbd() {
-        $data = array(
-            'producto_nombre' => $this->input->post('producto_nombre'),
-            'producto_descripcion' => $this->input->post('producto_descripcion'),
-            'producto_precio' => $this->input->post('producto_precio'),
-            'producto_cantidad' => $this->input->post('producto_cantidad'),
-            'producto_codigo' => $this->input->post('producto_codigo'),
-            'id_categoria' => $this->input->post('id_categoria'),
-            'producto_unidad_medida' => $this->input->post('producto_unidad_medida'),
-            'producto_estado' => '1' // Estado inicial activo
-        );
 
-        if ($this->Mproducto->insertar_producto($data)) {
-            redirect('Cproducto/vista_productos');
-        } else {
-            echo "Error al registrar el producto.";
-        }
+ public function agregarbd() {
+ 
+    $this->db->trans_start();
+
+    $data = array(
+        'producto_nombre' => $this->input->post('producto_nombre'),
+        'producto_descripcion' => $this->input->post('producto_descripcion'),
+        'producto_precio' => $this->input->post('producto_precio'),
+        'producto_cantidad' => $this->input->post('producto_cantidad'),
+        'producto_codigo' => $this->input->post('producto_codigo'),
+        'producto_unidad_medida' => $this->input->post('producto_unidad_medida'),
+        'producto_estado' => '1' // Estado inicial activo
+    );
+
+    $this->Mproducto->insertar_producto($data);
+    $id_producto = $this->db->insert_id(); // Obtener el ID del producto insertado
+
+    $datos_pedido = array(
+        'id_producto' => $id_producto,
+    );
+
+    
+    $this->db->insert('pedido', $datos_pedido);
+
+    
+    $this->db->trans_complete();
+
+    // Verificar si la transacción fue exitosa
+    if ($this->db->trans_status() === FALSE) {
+        echo "Error al registrar el producto y el pedido.";
+    } else {
+        redirect('Cproducto/vista_productos');
     }
+}
 
     public function vista_productos() {
         $lista = $this->Mproducto->lista_productos();
         $data = array('productos' => $lista);
         $this->load->view('assets/header');
         $this->load->view('assets/menu');
-        $this->load->view('assets/lista_producto', $data);
+        $this->load->view('producto/lista_producto', $data);
         $this->load->view('assets/footer');
     }
 
@@ -51,7 +68,7 @@ class Cproducto extends CI_Controller {
             $data = array("producto" => $this->Mproducto->recuperar_producto($id_producto));
             if ($data['producto']) {
                 $this->load->view('assets/header');
-                $this->load->view('assets/modificar_producto', $data);
+                $this->load->view('producto/modificar_producto', $data);
                 $this->load->view('assets/footer');
             } else {
                 redirect('Cproducto/vista_productos');

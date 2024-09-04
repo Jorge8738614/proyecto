@@ -6,9 +6,8 @@ class Pagination {
     protected $CI;
 
     public function __construct() {
-        // Obtén una instancia de CodeIgniter
+        
         $this->CI =& get_instance();
-        // Carga la librería de paginación de CodeIgniter
         $this->CI->load->library('pagination');
     }
 
@@ -34,7 +33,7 @@ class Pagination {
         // Inicializa la paginación
         $this->CI->pagination->initialize($config);
 
-        // Retorna los enlaces de paginación
+        
         return $this->CI->pagination->create_links();
     }
 }

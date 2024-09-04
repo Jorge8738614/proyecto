@@ -14,16 +14,19 @@
             </td>
 
             <td>
-                <a class="btn btn-primary btn-sm" href="<?php echo base_url(); ?>index.php/Cusuario/deshabilitados"> Deshabilitados </a>
+                <a class="btn btn-primary btn-sm" href="<?php echo base_url(); ?>Cusuario/vista_usuarios_deshabilitados"> Deshabilitados </a>
             </td>
             <td>
-                <a class="btn btn-primary btn-sm" href="http://localhost/proyecto/Cusuario/agregar" class="text-center">Registrar</a>
+                <a class="btn btn-primary btn-sm" href="<?php echo base_url(); ?>Cusuario/agregar" class="text-center">Registrar</a>
             </td>
         </tr>
     </table>
-
-     <table class="table table-striped table-bordered table-hover">
-        <thead class="thead-dark">  
+  <style>
+      .table tr td {padding: 2px;  }
+      .table tr th {padding: 2px; background: orange; color:white; }
+  </style>
+     <table class="table table-striped table-bordered table-hover" style="margin:0px; font-size: 11px;">
+        <thead>  
             <tr>
                 <th>No.</th>
                 <th>Nombre Completo</th>
@@ -36,11 +39,12 @@
             </tr>
         </thead>
         <tbody>
-            <?php
-            //$contador = 1;
-             $contador = $this->uri->segment(3) ? $this->uri->segment(3) : 1; // Ajusta el contador en función de la paginación
-            foreach ($usuarios->result() as $row) {  
-            ?>
+        <?php
+        $contador = 1;
+            
+        foreach ($usuarios as $row) 
+        {  
+        ?>
             <tr>
                 <td><?php echo $contador; ?></td>
                 <td><?php echo $row->nombre_completo; ?></td>
@@ -53,14 +57,14 @@
                 <td>
                     <form method="GET" action="<?php echo base_url(); ?>Cusuario/modificar">
 				    <input type="text" name="id" value="<?php echo $row->id_usuario; ?>" style="display: none;">
-				    <button type="submit" class="btn btn-success">Modificar</button>
+				    <button type="submit" class="btn btn-success btn-xs">Modificar</button>
 				    </form>
 				    
 				</td>
                 <td>
                     <form method="GET" action="<?php echo base_url(); ?>Cusuario/eliminarbd">
                     <input type="text" name="id" value="<?php echo $row->id_usuario; ?>" style="display: none;">
-                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                    <button type="submit" class="btn btn-danger btn-xs">Eliminar</button>
                     </form>
 
                 </td>
@@ -71,8 +75,18 @@
             ?>
         </tbody>
     </table>
+    
     <div class="pagination">
-        <?php echo $this->pagination->create_links(); ?>
+        <table class="table table-bordered" >
+            <tr>
+                <td> <a href="<?php echo base_url(); ?>/Cusuario/page_ant?sig=<?php echo $caminante; ?>&cam=<?php echo $caminante; ?>"> <span></span> < anterior </a> </td>
+                <td style="width: 50px; text-align: center;"> <?php echo $caminante; ?> <center>  <input type="hidden" value="1" name="caminante"> </center>  </td>
+                <td> 
+                    
+                    <a href="<?php echo base_url(); ?>/Cusuario/page_sig?sig=<?php echo $caminante; ?>&cam=<?php echo $caminante; ?>"> <span></span> siguiente > </a> </td>
+            </tr>
+        </table>
     </div>
+
 </div>
 

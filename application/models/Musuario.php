@@ -13,17 +13,42 @@ class Musuario extends CI_Model {
         return $resultados -> result(); //devuelve el resultado
     }
 
-      public function insertar_usuario($data) {
+    public function insertar_usuario($data) {
         return $this->db->insert('usuario', $data);
     }
 
+    public function size_usuarios()
+    {       $this->db->select('*');
+            //$this->db->where('estado_usuario', 1);  // Ajusta aquí si el nombre es diferente 
+            $resultados= $this->db->get('usuario');
+            return $resultados -> result(); //devuelve el resultado
+    }
+
     public function lista_usuarios()
-        {
+    {
             $this->db->select('*');
             $this->db->from('usuario');
             $this->db->where('estado_usuario', 1);  // Ajusta aquí si el nombre es diferente
             return $this->db->get(); // Devuelve el resultado
-        }
+    }
+
+  
+    public function lista_usuarios_page($ini,$fin)
+    {
+            $this->db->select('*');
+            //$this->db->where('estado_usuario', 1);  // Ajusta aquí si el nombre es diferente
+            $this->db->limit($fin, $ini); 
+            $resultados= $this->db->get('usuario');
+            return $resultados -> result(); //devuelve el resultado
+    }
+
+    public function lista_usuarios_deshabilitados()
+    {
+        $this->db->select('*');
+        $this->db->from('usuario');
+        $this->db->where('estado_usuario', 0); 
+        return $this->db->get(); 
+   }
 
 //misma funciones para obtener el id usuario
         
@@ -33,7 +58,7 @@ class Musuario extends CI_Model {
         $this->db->from('usuario');
         $this->db->where('id_usuario',$id_usuario);
         $resultados= $this->db->get();
-        return $resultados -> result(); //devuelve el resultado     
+        return $resultados -> result(); 
     }
 
     public function recuperar_usuario($id_usuario)
@@ -60,7 +85,7 @@ class Musuario extends CI_Model {
          return $resultados -> result(); 
     }
 
-    // Nuevo método para contar todos los usuarios
+    
     public function count_all_users()
     {
         $this->db->where('estado_usuario', 1); // Solo cuenta usuarios activos

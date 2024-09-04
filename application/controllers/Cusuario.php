@@ -22,14 +22,14 @@ class Cusuario extends CI_Controller {
 		{
 			
 		  $this->load->view('assets/header');
-		  $this->load->view('assets/registro_login');
+		  $this->load->view('usuario/registro_usuario');
 		  $this->load->view('assets/footer');
 		}
 		
 		public function vista_usuarios()
     	{
 
-    	 $config['base_url'] = base_url() . 'Cusuario/vista_usuarios/';
+    	/*$config['base_url'] = base_url() . 'Cusuario/vista_usuarios';
 	    $config['total_rows'] = $this->Musuario->count_all_users(); // Cambia este método al correcto
 	    $config['per_page'] = 10;
 	    $config['uri_segment'] = 3;
@@ -43,19 +43,107 @@ class Cusuario extends CI_Controller {
 	        'usuarios' => $lista,
 	        'pagination_links' => $this->pagination->create_links()
 	    );
-
+         print_r($data);*/
+          
         
-        $lista = $this->Musuario->lista_usuarios();
-        $data = array('usuarios' => $lista);
+        $lista = $this->Musuario->lista_usuarios_page(1,10);
+        $data = array('usuarios' => $lista, "caminante" => 1);
+
+        //print_r($data);
+
         $this->load->view('assets/header');
-        $this->load->view('assets/menu');
-        $this->load->view('assets/lista_usuario', $data);
+        $this->load->view('usuario/lista_usuario', $data);
         $this->load->view('assets/footer');
     	
     	}
+
+		public function page_sig()
+    	{ 
+    	  $caminante = $_GET['cam'];
+    	  $ini = ($caminante*10)+1;
+    	  $caminante = $caminante+1;
+          $fin = $caminante*10;
+ 
+          $size = sizeof($this->Musuario->size_usuarios());
+
+          if($fin <= $size )
+          {
+	        $lista = $this->Musuario->lista_usuarios_page($ini,$fin);
+	        $data = array('usuarios' => $lista, "caminante" => $caminante);
+
+	        //print_r($data);
+
+	        $this->load->view('assets/header');
+	        $this->load->view('usuario/lista_usuario', $data);
+	        $this->load->view('assets/footer');
+	        }
+	        else
+	        {
+		        $lista = $this->Musuario->lista_usuarios_page(1,10);
+		        $data = array('usuarios' => $lista, "caminante" => 1);
+
+		        //print_r($data);
+
+		        $this->load->view('assets/header');
+		        $this->load->view('usuario/lista_usuario', $data);
+		        $this->load->view('assets/footer');
+
+	        }
+    	
+    	}
+
+		public function page_ant()
+    	{ 
+    	  $caminante = $_GET['cam']-1; 
+    	  
+    	  if($caminante>0)
+    	  {
+    	    $ini = (($caminante-1)*10)+1;
+    	    //$caminante = $caminante+1;
+            $fin = $caminante*10;
+         
+        
+            $lista = $this->Musuario->lista_usuarios_page($ini,$fin);
+            $data = array('usuarios' => $lista, "caminante" => $caminante);
+
+            //print_r($data);
+
+	        $this->load->view('assets/header');
+	        $this->load->view('usuario/lista_usuario', $data);
+	        $this->load->view('assets/footer');
+	      }
+	      else { 
+
+	        $lista = $this->Musuario->lista_usuarios_page(1,10);
+	        $data = array('usuarios' => $lista, "caminante" => 1);
+
+	        //print_r($data);
+
+	        $this->load->view('assets/header');
+	        $this->load->view('usuario/lista_usuario', $data);
+	        $this->load->view('assets/footer');
+
+	      }
+    	
+    	}
+
+    	public function vista_usuarios_deshabilitados()
+    	{
+  
+        $lista = $this->Musuario->lista_usuarios_deshabilitados();
+        $data = array('usuarios' => $lista);
+        $this->load->view('assets/header');
+         
+        $this->load->view('usuario/lista_usuario_deshabilitados', $data);
+        $this->load->view('assets/footer');
+    	
+    }
+
+
  
 
-    public function agregarbd() {
+    public function agregarbd() 
+    {
        $data = array(
             'nombre_completo' => $this->input->post('nombre_completo'),
             'apellido' => $this->input->post('apellido'),
@@ -66,7 +154,7 @@ class Cusuario extends CI_Controller {
         );
 
         if ($this->Musuario->insertar_usuario($data)) {
-            redirect('Clogin/vista_usuarios');
+            redirect('Cusuario/vista_usuarios');
         } else {
             echo "Error al registrar el usuario.";
         }
@@ -85,16 +173,16 @@ class Cusuario extends CI_Controller {
 		        if (sizeof($data) > 0) 
 		        {
 		            $this->load->view('assets/header');
-		            $this->load->view('assets/modificar_login', $data );
+		            $this->load->view('usuario/modificar_usuario', $data );
 		            $this->load->view('assets/footer');
 		        } 
 		        else {
 		            
-		            redirect('Clogin/vista_usuarios');
+		            redirect('Cusuario/vista_usuarios');
 		        }
 		    } else {
 		        
-		        redirect('Clogin/vista_usuarios');
+		        redirect('Cusuario/vista_usuarios');
 		    }
 	}
 
@@ -113,22 +201,37 @@ class Cusuario extends CI_Controller {
 
    
         $this->Musuario->modificar_usuario($id_usuario, $data);
-         redirect('Clogin/vista_usuarios');
+         redirect('Cusuario/vista_usuarios');
     }
 
   	public function eliminarbd()	
 	{
-	    if (isset($_GET['id'])) { // Cambia $_POST a $_GET
+	    if (isset($_GET['id'])) { 
 	        $id_usuario = $_GET['id'];
 	        $data['estado_usuario'] = '0';
 	        $this->Musuario->modificar_usuario($id_usuario, $data);
-	        redirect('Clogin/vista_usuarios');
+	        redirect('Cusuario/vista_usuarios');
 	    } else {
 	        // Manejar el caso donde 'id' no esté definido
 	        echo "Error: No se ha proporcionado el ID del usuario.";
 	        // Opcionalmente, redirigir a otra página o mostrar un mensaje de error.
 	    }
 	}
+
+	public function habilitarbd()	
+	{
+	    if (isset($_GET['id'])) { 
+	        $id_usuario = $_GET['id'];
+	        $data['estado_usuario'] = '1';
+	        $this->Musuario->modificar_usuario($id_usuario, $data);
+	        redirect('Cusuario/vista_usuarios');
+	    } else {
+	        // Manejar el caso donde 'id' no esté definido
+	        echo "Error: No se ha proporcionado el ID del usuario.";
+	        // Opcionalmente, redirigir a otra página o mostrar un mensaje de error.
+	    }
+	}
+
 
 
 

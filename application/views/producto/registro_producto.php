@@ -42,7 +42,7 @@
                 <br>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary btn-md">Registrar Producto</button>
-                    <a href="<?php echo base_url(); ?>Cproducto/cancelar" class="btn btn-danger">Cancelar</a>
+                    <a href="<?php echo base_url(); ?>Cproducto/vista_productos" class="btn btn-danger">Cancelar</a>
                 </div>
             </form>
         </div>

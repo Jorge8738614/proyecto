@@ -94,9 +94,33 @@ if ($id_usuario_sesion>0) {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="http://localhost/proyecto/Cpedido/vista_pedido">
+                                <span data-feather="shopping-cart"></span>
+                                Pedidos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://localhost/proyecto/Ccliente/vista_clientes">
                                 <span data-feather="users"></span>
                                 Clientes
+                            </a>
+                        </li>
+                         <li class="nav-item">
+                            <a class="nav-link" href="http://localhost/proyecto/Cproducto/vista_productos">
+                                <span data-feather="shopping-cart"></span>
+                                Ventas Efectuadas
+                            </a>
+                        </li>
+                         <li class="nav-item">
+                            <a class="nav-link" href="http://localhost/proyecto/Ccliente/vista_clientes">
+                                <span data-feather="users"></span>
+                                Cotizaciones
+                            </a>
+                        </li>
+                         <li class="nav-item">
+                            <a class="nav-link" href="http://localhost/proyecto/Ccliente/vista_clientes">
+                                <span data-feather="users"></span>
+                                Contratos
                             </a>
                         </li>
                         <li class="nav-item">

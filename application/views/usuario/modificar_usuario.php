@@ -9,7 +9,7 @@
               if (sizeof($usuario) > 0): ?>
             <?php foreach($usuario as $row): ?>
            
-            <form method="POST" action="<?php echo base_url(); ?>Clogin/actualizar" autocomplete="off">
+            <form method="POST" action="<?php echo base_url(); ?>Cusuario/actualizar" autocomplete="off">
            
                 <input type="text" name="id" value="<?php echo $row->id_usuario; ?>"  style="display: none;">
 
