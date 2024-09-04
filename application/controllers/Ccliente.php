@@ -61,8 +61,8 @@ class Ccliente extends CI_Controller {
         $data = array(
             'nombre' => $this->input->post('nombre'),
             'direccion' => $this->input->post('direccion'),
-            'telefono' => $this->input->post('telefono')
-        );
+            'celular' => $this->input->post('celular')
+            );
 
         if ($this->Mcliente->insertar_cliente($data)) {
             redirect('Ccliente/vista_clientes');

@@ -42,7 +42,7 @@
                 <td><?php echo $contador; ?></td>
                 <td><?php echo $row->nombre; ?></td>
                 <td><?php echo $row->direccion; ?></td>
-                <td><?php echo $row->telefono; ?></td>
+                <td><?php echo $row->celular; ?></td>
                 <td>
                     <a class="btn btn-warning btn-sm" href="<?php echo base_url(); ?>Ccliente/modificar?id=<?php echo $row->id_cliente; ?>">Modificar</a>
                 </td>
