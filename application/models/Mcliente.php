@@ -12,7 +12,8 @@ class Mcliente extends CI_Model {
         $this->db->select('*');
         $this->db->from('cliente');
         $this->db->where('estado_cliente', 1); 
-        return $this->db->get();
+        $resultados = $this->db->get();
+        return $resultados->result(); 
     }
 
     public function lista_clientes_deshabilitados()
@@ -20,8 +21,10 @@ class Mcliente extends CI_Model {
         $this->db->select('*');
         $this->db->from('cliente');
         $this->db->where('estado_cliente', 0); 
-        return $this->db->get(); 
+        $resultados = $this->db->get();
+        return $resultados->result(); 
     }
+    
 
     public function recuperar_cliente($id_cliente)
     {

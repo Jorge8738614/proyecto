@@ -6,53 +6,98 @@ class Cpedido extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('Mpedido');
+        $this->load->model('Mproducto');
+        $this->load->model('Mcliente');
     }
 
+    public function agregar()
+    {
+        $this->load->view('assets/header');
+        $this->load->view('pedido/registro_pedido');
+        $this->load->view('assets/footer');
+    }
+
+    public function registrar_pedidos()
+    {
+        $data=array(
+         "productos"=>$this->Mproducto->lista_productos(),
+         "pedidos"=> $this->Mpedido->listar_pedidos(),
+         "ultimo_pedido"=> $this->Mpedido->listar_ultimo_pedido(),
+         "clientes"=> $this->Mcliente->lista_clientes(),);
+
+        //print_r($data);
+
+        $this->load->view('assets/header');
+        $this->load->view('pedido/registrar_pedido', $data);
+        $this->load->view('assets/footer');
+    }
+
+    public function regitrar_carrito()
+    {
+        $codigo_car = $_POST["codigo_car"];
+        $id_cliente = $_POST["cliente"];
+        $prioridad = $_POST["prioridad"];
+        $id_producto = $_POST["producto"];
+        $cantidad_car = $_POST["cantidad"];
+
+        $prod = $this->Mproducto->get_producto($id_producto);
+        $costo_car = $prod[0]->producto_precio;
+
+        $data = array(
+        "codigo_car" => $codigo_car,
+        "id_cliente" => $id_cliente,
+        "prioridad" => $prioridad,
+        "id_producto" => $id_producto,
+        "cantidad_car" => $cantidad_car,
+        "costo_car" => $costo_car,
+        );
+
+        $this->Mpedido->registrar_carrito_pedidos($data);
+
+        $data1 = array(
+         "productos"=>$this->Mproducto->lista_productos(),
+         "pedidos"=> $this->Mpedido->listar_pedidos(),
+         "ultimo_pedido"=> $this->Mpedido->listar_ultimo_pedido(),
+         "clientes"=> $this->Mcliente->lista_clientes(),
+         "codigo_car" => $codigo_car,
+         "carrito"=> $this->Mpedido->lista_carrito_pedido($codigo_car),
+
+          );
+
+        $this->load->view('assets/header');
+        $this->load->view('pedido/registrar_pedido_carrito', $data1);
+        $this->load->view('assets/footer');
+
+    }
+
+
     // Muestra la vista con el formulario y la tabla de pedidos
-    public function vista_pedido() {
-        $data['pedidos'] = $this->Mpedido->listar_pedidos();
+    public function vista_pedido() 
+    {
+
+        $data=array(
+        "productos"=>$this->Mproducto->lista_productos(),
+        "pedidos"=> $this->Mpedido->listar_pedidos(),
+        "clientes"=> $this->Mcliente->lista_clientes(),
+
+        );
         $this->load->view('assets/header');
         $this->load->view('assets/menu');
         $this->load->view('pedido/lista_pedido', $data);
         $this->load->view('assets/footer');
     }
 
-    // Procesa la inserción de un nuevo pedido
-   // public function agregar_pedido() {
-  //      $datos_pedido = array(
-   //         'fecha_creacion' => date('Y-m-d H:i:s'),
-   //         'estado' => $this->input->post('estado'),
-   //         'prioridad' => $this->input->post('prioridad')
-   //     );
-
-   //    $this->Mpedido->insertar_pedido($datos_pedido);
-    //    redirect('Cpedido/vista_pedido');
-   // }
-
- public function agregar_pedido() {
-        $datos_pedido = array(
-            'estado' => $this->input->post('estado'),
-            'prioridad' => $this->input->post('prioridad'),
-            'fecha_creacion' => date('Y-m-d H:i:s') // Fecha actual
-        );
-
-        // Obtener productos seleccionados desde el formulario
-        $productos = array();
-        $productos_seleccionados = $this->input->post('productos');
-        $cantidades = $this->input->post('cantidades');
-
-        foreach ($productos_seleccionados as $key => $idProducto) {
-            $productos[] = array(
-                'idProducto' => $idProducto,
-                'cantidad' => $cantidades[$key]
-            );
-        }
-
-        // Llamar al método del modelo para insertar el pedido y productos
-        if ($this->Mpedido->insertar_pedido($datos_pedido, $productos)) {
-            redirect('Cpedido/vista_pedidos');
+    public function eliminarbd()    
+    {
+        if (isset($_GET['id'])) { 
+            $id_pedido = $_GET['id'];
+            $data['estado_pedido'] = 0;
+            $this->Mpedido->modificar_pedido($id_pedido, $data);
+            redirect('Cpedido/vista_pedido');
         } else {
-            echo "Error al registrar el pedido.";
+            echo "Error: No se ha proporcionado el ID del pedido.";
         }
     }
+
+
 }

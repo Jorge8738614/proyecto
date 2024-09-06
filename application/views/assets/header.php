@@ -93,12 +93,21 @@ if ($id_usuario_sesion>0) {
                                 Productos
                             </a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://localhost/proyecto/Cpedido/registrar_pedidos">
+                                <span data-feather="shopping-cart"></span>
+                                Pedidos Rapidos
+                            </a>
+                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="http://localhost/proyecto/Cpedido/vista_pedido">
                                 <span data-feather="shopping-cart"></span>
                                 Pedidos
                             </a>
-                        </li>
+                        </li> 
+                                               
                         <li class="nav-item">
                             <a class="nav-link" href="http://localhost/proyecto/Ccliente/vista_clientes">
                                 <span data-feather="users"></span>

@@ -13,6 +13,33 @@ class Mpedido extends CI_Model {
         return $query->result();
     }
 
+    public function registrar_carrito_pedidos($data)
+    {
+         $this->db->insert('carrito', $data);
+    }
+
+
+    public function listar_ultimo_pedido()
+    {
+        $this->db->order_by('id_pedido DESC');
+        $this->db->select('*');
+        $this->db->limit(1);
+        $query = $this->db->get('pedido');
+        return $query->result(); // Devuelve una única fila
+    }
+
+    
+    public function lista_carrito_pedido($codigo_car)
+    {
+        $this->db->select('*');
+        $this->db->join("producto p", "p.id_producto = c.id_producto");
+        $this->db->join("cliente cl", "cl.id_cliente = c.id_cliente");
+        $this->db->where("c.codigo_car", $codigo_car);
+        $query = $this->db->get('carrito c');
+        return $query->result(); // Devuelve una única fila
+    }
+
+
     public function insertar_venta($datos_venta, $productos) {
     
     $this->db->trans_start();
@@ -41,6 +68,11 @@ class Mpedido extends CI_Model {
         return true;
     }
 }
+    
+       public function modificar_pedido($id_pedido, $data) {
+        $this->db->where('id_pedido', $id_pedido);
+        return $this->db->update('pedido', $data);
+    }
 
 
     // Obtener lista de productos (esto es opcional si ya tienes un método similar en otro modelo)

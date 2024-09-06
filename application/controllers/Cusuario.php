@@ -274,7 +274,7 @@ class Cusuario extends CI_Controller {
 		);
 
 		  $this->load->view('assets/header');
-		  $this->load->view('assets/lista_usuario_busqueda',$data);
+		  $this->load->view('usuario/lista_usuario_busqueda',$data);
 		  $this->load->view('assets/footer');
 
 	}

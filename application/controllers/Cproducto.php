@@ -54,13 +54,85 @@ class Cproducto extends CI_Controller {
 }
 
     public function vista_productos() {
-        $lista = $this->Mproducto->lista_productos();
-        $data = array('productos' => $lista);
+        $lista = $this->Mproducto->lista_productos_page(1,10);
+         $data = array('productos' => $lista, "caminante" => 1);
         $this->load->view('assets/header');
         $this->load->view('assets/menu');
         $this->load->view('producto/lista_producto', $data);
         $this->load->view('assets/footer');
     }
+
+    public function page_sig()
+        { 
+          $caminante = $_GET['cam'];
+          echo $ini = ($caminante*10)+1;
+
+          echo " - ";
+          $caminante = $caminante+1;
+          echo $fin = $caminante*10;
+ 
+          $size = sizeof($this->Mproducto->size_productos());
+
+          if($fin <= $size )
+          {
+            $lista = $this->Mproducto->lista_productos_page($ini,$fin);
+            $data = array('productos' => $lista, "caminante" => $caminante);
+
+            //print_r($data);
+
+            $this->load->view('assets/header');
+            $this->load->view('producto/lista_producto', $data);
+            $this->load->view('assets/footer');
+            }
+            else
+            {
+                $lista = $this->Mproducto->lista_productos_page(1,10);
+                $data = array('productos' => $lista, "caminante" => 1);
+
+                //print_r($data);
+
+                $this->load->view('assets/header');
+                $this->load->view('producto/lista_producto', $data);
+                $this->load->view('assets/footer');
+
+            }
+        
+        }
+
+        public function page_ant()
+        { 
+          $caminante = $_GET['cam']-1; 
+          
+          if($caminante>0)
+          {
+            $ini = (($caminante-1)*10)+1;
+            //$caminante = $caminante+1;
+            $fin = $caminante*10;
+         
+        
+            $lista = $this->Mproducto->lista_productos_page($ini,$fin);
+            $data = array('productos' => $lista, "caminante" => $caminante);
+
+           
+
+            $this->load->view('assets/header');
+            $this->load->view('producto/lista_producto', $data);
+            $this->load->view('assets/footer');
+          }
+          else { 
+
+            $lista = $this->Mproducto->lista_productos_page(1,10);
+            $data = array('productos' => $lista, "caminante" => 1);
+
+            //print_r($data);
+
+            $this->load->view('assets/header');
+            $this->load->view('producto/lista_producto', $data);
+            $this->load->view('assets/footer');
+
+          }
+        
+        }
 
     public function modificar_producto() {
         $id_producto = trim($_GET['id']);
