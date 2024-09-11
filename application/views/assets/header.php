@@ -121,13 +121,13 @@ if ($id_usuario_sesion>0) {
                             </a>
                         </li>
                          <li class="nav-item">
-                            <a class="nav-link" href="http://localhost/proyecto/Ccliente/vista_clientes">
+                            <a class="nav-link" href="http://localhost/proyecto/Ccotizacion/vista_cotizacion">
                                 <span data-feather="users"></span>
                                 Cotizaciones
                             </a>
                         </li>
                          <li class="nav-item">
-                            <a class="nav-link" href="http://localhost/proyecto/Ccliente/vista_clientes">
+                            <a class="nav-link" href="http://localhost/proyecto/Ccontrato/vista_contrato">
                                 <span data-feather="users"></span>
                                 Contratos
                             </a>

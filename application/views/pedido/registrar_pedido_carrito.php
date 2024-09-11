@@ -4,8 +4,11 @@
             <div class="col-lg-5 col-md-5 col-sm-12">
 
                 <h4 class="text mb-4"> REGISTRAR DE PEDIDO </h4>
-                <form method="POST" action="<?php echo base_url();?>Cpedido/regitrar_carrito" autocomplete="off">
+               
+                <form method="POST" action="<?php echo base_url();?>Cpedido/registrar_carrito">
+
                     <input type="text" name="codigo_car" value="<?php echo $codigo_car; ?>" >
+                    
                     <div class="form-group">
                          <label for="productos" class="sr-only">Productos:</label>
                         <select name="cliente" class="form-control form-control-sm">
@@ -36,7 +39,7 @@
                     <br>
                     <div>
                         <button type="submit" class="btn btn-primary btn-md"> Agregar </button>
-                        <a href="<?php echo base_url(); ?>Ccliente/vista_clientes" class="btn btn-danger"> Cancelar </a>   
+                        <a href="<?php echo base_url(); ?>Cpedido/registrar_carrito_pedidos" class="btn btn-danger"> Cancelar </a>   
                     </div>
             </form>
 
@@ -64,10 +67,12 @@
                    <?php
                      $i=0;
                      $total_venta = 0;
+                     //$total_cambio =0;
                      foreach( $carrito as $car )
                      {  $i++;
                         $codigo_car = $car->codigo_car;
                         $cliente = $car->nombre;
+                        $id_cliente = $car->id_cliente;
                         $prioridad = $car->prioridad;
                         $producto_nombre = $car->producto_nombre;
                         $cantidad_car = $car->cantidad_car;
@@ -80,13 +85,19 @@
                         <td> <?php echo $cantidad_car; ?> </td>
                         <td> <?php echo $costo_car; ?> </td>
                         <td> <?php echo ($cantidad_car*$costo_car); ?> </td>
-                        <td> <button class='btn btn-danger btn-sm'> eliminar </button></td>
+                        <td>
 
+                            <input type="hidden" name="id_carrito" value="<?php echo $car->id_carrito;?>" >
+                            <button type="submit" class="btn btn-danger btn-xs">Eliminar</button>
+                            </form>
+
+                        </td>
                     </tr>
     
 
                     <?php 
-                       $total_venta = $total_venta +($cantidad_car*$costo_car);                   
+                       $total_venta = $total_venta +($cantidad_car*$costo_car);
+                       //$total_cambio = $cambio - $total_venta;                  
                       }
                     ?>
                     
@@ -94,6 +105,9 @@
 
             </div>
 
+
+            <form method="POST" action="<?php echo base_url() ;?>Cpedido/registrar_carrito_venta" >
+            
             <table class="table table-bordered table-condensed"> 
                 <tr>
                     <th> total </th>
@@ -105,18 +119,26 @@
                         <input type="text" class="form-control" name="total" value="<?php echo $total_venta; ?>"> 
                     </td>
                     <td>
-                        <input type="text" class="form-control" name="pago" placeholder="0.00"> 
+                        <input type="text" class="form-control" name="pago" placeholder="0.00" autocomplete="off"> 
                     </td>
                     <td>
-                        <input type="text" class="form-control" name="cambio" placeholder="0.00"> 
+                        <input type="text" class="form-control" name="cambio" placeholder="0.00" value="<?php //echo $total_cambio; ?>"> 
                     </td>
                 </tr>
                 
             </table>
 
             <center>
-                <button class="btn btn-primary btn-md"> FINALIZAR PEDIDO </button>
+                    <input type="text" name="id_cliente" value="<?php echo $id_cliente; ?>" >
+                    <input type="text" name="codigo_car1" value="<?php echo $codigo_car; ?>" >
+
+                    <button type="submit" class="btn btn-info btn-md"> Finalizar Pedido </button>
+
+                    <button type="submit" class="btn btn-info btn-md"> Cancelar </button>
+                    
             </center>
+            </form>
+
 
           </div>
 
