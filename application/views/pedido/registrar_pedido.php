@@ -4,8 +4,8 @@
             <div class="col-lg-5 col-md-5 col-sm-12">
 
                 <h4 class="text mb-4"> REGISTRAR DE PEDIDO </h4>
-                <form method="POST" action="<?php echo base_url();?>Cpedido/regitrar_carrito" autocomplete="off">
-                    <input type="text" name="codigo_car" value="<?php echo $codigo_car = "PS_".$ultimo_pedido[0]->id_pedido; ?>" >
+                <form method="POST" action="<?php echo base_url();?>Cpedido/registrar_carrito" autocomplete="off">
+                    <input type="text" name="codigo_car" value="<?php echo $codigo_car = "PS_".$ultimo_pedido[0]->id_venta; ?>" >
                     <div class="form-group">
                          <label for="productos" class="sr-only">Productos:</label>
                         <select name="cliente" class="form-control form-control-sm">
