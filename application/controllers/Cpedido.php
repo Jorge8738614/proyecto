@@ -11,12 +11,6 @@ class Cpedido extends CI_Controller {
         $this->load->model('Mventa');
     }
 
-    public function agregar()
-    {
-        $this->load->view('assets/header');
-        $this->load->view('pedido/registro_pedido');
-        $this->load->view('assets/footer');
-    }
 
     public function registrar_pedidos()
     {
@@ -79,37 +73,6 @@ class Cpedido extends CI_Controller {
         $this->load->view('assets/footer');
 
     }
-
-
-    // Muestra la vista con el formulario y la tabla de pedidos
-    public function vista_pedido() 
-    {
-
-        $data=array(
-        "productos"=>$this->Mproducto->lista_productos(),
-        "pedidos"=> $this->Mpedido->listar_pedidos(),
-        "clientes"=> $this->Mcliente->lista_clientes(),
-
-        );
-        $this->load->view('assets/header');
-        $this->load->view('assets/menu');
-        $this->load->view('pedido/lista_pedido', $data);
-        $this->load->view('assets/footer');
-    }
-
-    public function eliminarbd()    
-    {
-        if (isset($_GET['id'])) { 
-            $id_pedido = $_GET['id'];
-            $data['estado_pedido'] = 0;
-            $this->Mpedido->modificar_pedido($id_pedido, $data);
-            redirect('Cpedido/vista_pedido');
-        } else {
-            echo "Error: No se ha proporcionado el ID del pedido.";
-        }
-    }
-
-
     public function eliminar_carrito_bd()
     {
         $id_carrito=$_POST['id_carrito'];

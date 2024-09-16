@@ -49,21 +49,21 @@ class Mcliente extends CI_Model {
         $resultados = $this->db->get();
         return $resultados->result(); 
     }
-
-    public function count_all_clients()
+     // FUNCIONES DE PAGINACION PARA CLIENTE
+    public function size_clientes()    
+    {      
+            $this->db->select('*');
+            //$this->db->where('estado_usuario', 1);  
+            $resultados= $this->db->get('cliente');
+            return $resultados -> result(); //devuelve el resultado
+    }
+    public function lista_clientes_page($ini,$fin)
     {
-        $this->db->where('estado_cliente', 1); 
-        return $this->db->count_all_results('cliente');
+            $this->db->select('*');
+            //$this->db->where('estado_usuario', 1);
+            $this->db->limit(10, $ini); 
+            $resultados= $this->db->get('cliente');
+            return $resultados -> result(); //devuelve el resultado
     }
 
-    public function get_clients($limit, $start)
-    {
-        $this->db->select('*');
-        $this->db->from('cliente');
-        $this->db->where('estado_cliente', 1);
-        $this->db->limit($limit, $start);
-        $query = $this->db->get();
-
-        return $query->result();
-    }
 }

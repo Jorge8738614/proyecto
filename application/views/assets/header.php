@@ -100,13 +100,12 @@ if ($id_usuario_sesion>0) {
                                 Pedidos Rapidos
                             </a>
                         </li>
-
                         <li class="nav-item">
-                            <a class="nav-link" href="http://localhost/proyecto/Cpedido/vista_pedido">
+                            <a class="nav-link" href="http://localhost/proyecto/Cventa/vista_venta">
                                 <span data-feather="shopping-cart"></span>
-                                Pedidos
+                                Ventas Efectuadas
                             </a>
-                        </li> 
+                        </li>
                                                
                         <li class="nav-item">
                             <a class="nav-link" href="http://localhost/proyecto/Ccliente/vista_clientes">
@@ -114,12 +113,7 @@ if ($id_usuario_sesion>0) {
                                 Clientes
                             </a>
                         </li>
-                         <li class="nav-item">
-                            <a class="nav-link" href="http://localhost/proyecto/Cproducto/vista_productos">
-                                <span data-feather="shopping-cart"></span>
-                                Ventas Efectuadas
-                            </a>
-                        </li>
+
                          <li class="nav-item">
                             <a class="nav-link" href="http://localhost/proyecto/Ccotizacion/vista_cotizacion">
                                 <span data-feather="users"></span>
@@ -127,6 +121,12 @@ if ($id_usuario_sesion>0) {
                             </a>
                         </li>
                          <li class="nav-item">
+                            <a class="nav-link" href="http://localhost/proyecto/Ccotizacion/lista_cotizacion">
+                                <span data-feather="users"></span>
+                                Cotizaciones Efectuadas
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="http://localhost/proyecto/Ccontrato/vista_contrato">
                                 <span data-feather="users"></span>
                                 Contratos

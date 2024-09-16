@@ -17,4 +17,10 @@ class Ccotizacion extends CI_Controller {
         $this->load->view('cotizacion/vista_cotizacion');
         $this->load->view('assets/footer');
     }
+        public function lista_cotizacion()
+    {
+        $this->load->view('assets/header');
+        $this->load->view('cotizacion/lista_cotizacion');
+        $this->load->view('assets/footer');
+    }
 }

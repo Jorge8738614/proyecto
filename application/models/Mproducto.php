@@ -37,20 +37,19 @@ class Mproducto extends CI_Model {
         return $this->db->update('producto', $data);
     }
 
-// FUNCIONES DE PAGINACION 
+ // FUNCIONES DE PAGINACION PARA PRODUCTO
     public function size_productos()    
     {       $this->db->select('*');
-            //$this->db->where('estado_usuario', 1);  // Ajusta aquí si el nombre es diferente 
+            //$this->db->where('estado_usuario', 1);  
             $resultados= $this->db->get('producto');
-            return $resultados -> result(); //devuelve el resultado
+            return $resultados -> result(); 
     }
     public function lista_productos_page($ini,$fin)
     {
             $this->db->select('*');
-            //$this->db->where('estado_usuario', 1);  // Ajusta aquí si el nombre es diferente
-            $this->db->limit($fin, $ini); 
+            //$this->db->where('estado_usuario', 1); 
+            $this->db->limit(10, $ini); 
             $resultados= $this->db->get('producto');
-            return $resultados -> result(); //devuelve el resultado
+            return $resultados -> result(); 
     }
-
 }

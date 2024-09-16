@@ -28,28 +28,9 @@ class Cusuario extends CI_Controller {
 		
 		public function vista_usuarios()
     	{
-
-    	/*$config['base_url'] = base_url() . 'Cusuario/vista_usuarios';
-	    $config['total_rows'] = $this->Musuario->count_all_users(); // Cambia este método al correcto
-	    $config['per_page'] = 10;
-	    $config['uri_segment'] = 3;
-
-	    $this->pagination->initialize($config);
-
-	    $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-
-	    $lista = $this->Musuario->get_users($config['per_page'], $page);
-	    $data = array(
-	        'usuarios' => $lista,
-	        'pagination_links' => $this->pagination->create_links()
-	    );
-         print_r($data);*/
-          
-        
+ 
         $lista = $this->Musuario->lista_usuarios_page(1,10);
         $data = array('usuarios' => $lista, "caminante" => 1);
-
-        //print_r($data);
 
         $this->load->view('assets/header');
         $this->load->view('usuario/lista_usuario', $data);
@@ -57,75 +38,7 @@ class Cusuario extends CI_Controller {
     	
     	}
 
-		public function page_sig()
-    	{ 
-    	  $caminante = $_GET['cam'];
-    	  $ini = ($caminante*10)+1;
-    	  $caminante = $caminante+1;
-          $fin = $caminante*10;
- 
-          $size = sizeof($this->Musuario->size_usuarios());
-
-          if($fin <= $size )
-          {
-	        $lista = $this->Musuario->lista_usuarios_page($ini,$fin);
-	        $data = array('usuarios' => $lista, "caminante" => $caminante);
-
-	        //print_r($data);
-
-	        $this->load->view('assets/header');
-	        $this->load->view('usuario/lista_usuario', $data);
-	        $this->load->view('assets/footer');
-	        }
-	        else
-	        {
-		        $lista = $this->Musuario->lista_usuarios_page(1,10);
-		        $data = array('usuarios' => $lista, "caminante" => 1);
-
-		        //print_r($data);
-
-		        $this->load->view('assets/header');
-		        $this->load->view('usuario/lista_usuario', $data);
-		        $this->load->view('assets/footer');
-
-	        }
-    	
-    	}
-
-		public function page_ant()
-    	{ 
-    	  $caminante = $_GET['cam']-1; 
-    	  
-    	  if($caminante>0)
-    	  {
-    	    $ini = (($caminante-1)*10)+1;
-    	    //$caminante = $caminante+1;
-            $fin = $caminante*10;
-         
-        
-            $lista = $this->Musuario->lista_usuarios_page($ini,$fin);
-            $data = array('usuarios' => $lista, "caminante" => $caminante);
-
-            //print_r($data);
-
-	        $this->load->view('assets/header');
-	        $this->load->view('usuario/lista_usuario', $data);
-	        $this->load->view('assets/footer');
-	      }
-	      else { 
-
-	        $lista = $this->Musuario->lista_usuarios_page(1,10);
-	        $data = array('usuarios' => $lista, "caminante" => 1);
-
-	        //print_r($data);
-
-	        $this->load->view('assets/header');
-	        $this->load->view('usuario/lista_usuario', $data);
-	        $this->load->view('assets/footer');
-
-	      }
-    	
-    	}
+		
 
     	public function vista_usuarios_deshabilitados()
     	{
@@ -188,7 +101,7 @@ class Cusuario extends CI_Controller {
 
     public function actualizar()
     {
-        echo $id_usuario = trim($_POST['id']);;
+        $id_usuario = trim($_POST['id']);;
         
         $data = array(
             'nombre_completo' => $this->input->post('nombre_completo'),
@@ -279,4 +192,71 @@ class Cusuario extends CI_Controller {
 
 	}
 
+	//FUNCIONES DE PAGINACION
+
+	    public function page_sig()
+    { 
+            $caminante = $_GET['cam'];
+           	$ini=$caminante*10;
+         
+ 
+          $size = sizeof($this->Musuario->size_usuarios());
+          $operacion= $size/10;
+          $operacion=round($operacion, 0);
+          $operacion=$operacion-1;
+
+          if($caminante <= $operacion )
+          {
+            $lista = $this->Musuario->lista_usuarios_page($ini,10);
+            $caminante=$caminante+1;
+            $data = array('usuarios' => $lista, "caminante" => $caminante);
+
+            $this->load->view('assets/header');
+            $this->load->view('usuario/lista_usuario', $data);
+            $this->load->view('assets/footer');
+            }
+            else
+            {
+                $lista = $this->Musuario->lista_usuarios_page(1,10);
+                $data = array('usuarios' => $lista, "caminante" => 1);
+
+                $this->load->view('assets/header');
+                $this->load->view('usuario/lista_usuario', $data);
+                $this->load->view('assets/footer');
+
+            }
+        
+        }
+
+        public function page_ant()
+        { 
+          $caminante = $_GET['cam']-1; 
+          
+          if($caminante>0)
+          {
+             $ini = (($caminante)*10);
+            //$caminante = $caminante+1;
+        
+         
+            $lista = $this->Musuario->lista_usuarios_page($ini,10);
+            $data = array('usuarios' => $lista, "caminante" => $caminante);
+
+            $this->load->view('assets/header');
+            $this->load->view('usuario/lista_usuario', $data);
+            $this->load->view('assets/footer');
+          }
+          else { 
+
+            $lista = $this->Musuario->lista_usuarios_page(1,10);
+            $data = array('usuarios' => $lista, "caminante" => 1);
+
+            //print_r($data);
+
+            $this->load->view('assets/header');
+            $this->load->view('usuario/lista_usuario', $data);
+            $this->load->view('assets/footer');
+
+          }
+        
+        }
 }

@@ -94,10 +94,19 @@
             ?>
         </tbody>
     </table>
-            <!-- Paginación -->
-            <div class="pagination">
-                <?php echo $pagination_links; ?>
-            </div>
+        <div class="pagination">
+            <table class="table table-bordered">
+                <tr>
+                    <td> <a href="<?php echo base_url(); ?>Ccliente/page_ant?sig=<?php echo $caminante; ?>&cam=<?php echo $caminante; ?>"> <span></span> < anterior </a> 
+                    </td>
+                    <td style="width: 50px; text-align: center;"> <?php echo $caminante; ?> <center>  <input type="hidden" value="1" name="caminante"> </center> 
+                     </td>
+                    <td> 
+                        <a href="<?php echo base_url(); ?>Ccliente/page_sig?sig=<?php echo $caminante; ?>&cam=<?php echo $caminante; ?>"> <span></span> siguiente > </a> 
+                    </td>
+                </tr>
+            </table>
+         </div>
         </div>
     </div>
 </div>

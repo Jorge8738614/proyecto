@@ -7,14 +7,6 @@ class Ccliente extends CI_Controller {
     {
         parent::__construct();
         $this->load->model("Mcliente");
-        $this->load->library('pagination');
-    }
-
-    public function menu()
-    {
-        $this->load->view('assets/header');
-        $this->load->view('assets/menu');
-        $this->load->view('assets/footer');
     }
 
     public function agregar()
@@ -26,23 +18,11 @@ class Ccliente extends CI_Controller {
 
     public function vista_clientes()
     {
-        $config['base_url'] = base_url() . 'Ccliente/vista_clientes';
-        $config['total_rows'] = $this->Mcliente->count_all_clients();
-        $config['per_page'] = 10;
-        $config['uri_segment'] = 3;
-
-        $this->pagination->initialize($config);
-
-        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-
-        $lista = $this->Mcliente->get_clients($config['per_page'], $page);
-        $data = array(
-            'clientes' => $lista,
-            'pagination_links' => $this->pagination->create_links()
-        );
+        $data = array('clientes' => $this->Mcliente->lista_clientes_page(1,10),
+                    'caminante'=>1,
+                    ); 
 
         $this->load->view('assets/header');
-        $this->load->view('assets/menu');
         $this->load->view('cliente/lista_cliente', $data);
         $this->load->view('assets/footer');
     }
@@ -139,4 +119,72 @@ class Ccliente extends CI_Controller {
         $this->load->view('assets/lista_cliente_busqueda', $data);
         $this->load->view('assets/footer');
     }
+
+       public function page_sig()
+    { 
+            $caminante = $_GET['cam'];
+            $ini=$caminante*10;
+         
+ 
+          $size = sizeof($this->Mcliente->size_clientes());
+          $operacion= $size/10;
+          $operacion=round($operacion, 0);
+          $operacion=$operacion-1;
+
+          if($caminante <= $operacion )
+          {
+            $lista = $this->Mcliente->lista_clientes_page($ini,10);
+            $caminante=$caminante+1;
+            $data = array('clientes' => $lista, "caminante" => $caminante);
+
+            //print_r($data);
+
+            $this->load->view('assets/header');
+            $this->load->view('cliente/lista_cliente', $data);
+            $this->load->view('assets/footer');
+            }
+            else
+            {
+                $lista = $this->Mcliente->lista_clientes_page(1,10);
+                $data = array('clientes' => $lista, "caminante" => 1);
+
+                //print_r($data);
+
+                $this->load->view('assets/header');
+                $this->load->view('cliente/lista_cliente', $data);
+                $this->load->view('assets/footer');
+
+            }
+        
+        }
+
+        public function page_ant()
+        { 
+          $caminante = $_GET['cam']-1; 
+          
+          if($caminante>0)
+          {
+            $ini = (($caminante)*10);
+            //$caminante = $caminante+1;
+        
+         
+            $lista = $this->Mcliente->lista_clientes_page($ini,10);
+            $data = array('clientes' => $lista, "caminante" => $caminante);
+
+            $this->load->view('assets/header');
+            $this->load->view('cliente/lista_cliente', $data);
+            $this->load->view('assets/footer');
+          }
+          else { 
+
+            $lista = $this->Mcliente->lista_clientes_page(1,10);
+            $data = array('clientes' => $lista, "caminante" => 1);
+
+            $this->load->view('assets/header');
+            $this->load->view('cliente/lista_cliente', $data);
+            $this->load->view('assets/footer');
+
+          }
+        
+        }
 }

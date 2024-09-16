@@ -20,7 +20,6 @@ class Cproducto extends CI_Controller {
 
  public function agregarbd() {
  
-    $this->db->trans_start();
 
     $data = array(
         'producto_nombre' => $this->input->post('producto_nombre'),
@@ -32,20 +31,7 @@ class Cproducto extends CI_Controller {
         'producto_estado' => '1' // Estado inicial activo
     );
 
-    $this->Mproducto->insertar_producto($data);
-    $id_producto = $this->db->insert_id(); // Obtener el ID del producto insertado
-
-    $datos_pedido = array(
-        'id_producto' => $id_producto,
-    );
-
-    
-    $this->db->insert('pedido', $datos_pedido);
-
-    
-    $this->db->trans_complete();
-
-    // Verificar si la transacción fue exitosa
+    // Verificar si la transacción fue exitos
     if ($this->db->trans_status() === FALSE) {
         echo "Error al registrar el producto y el pedido.";
     } else {
@@ -54,85 +40,14 @@ class Cproducto extends CI_Controller {
 }
 
     public function vista_productos() {
-        $lista = $this->Mproducto->lista_productos_page(1,10);
-         $data = array('productos' => $lista, "caminante" => 1);
+     $data = array('productos' => $this->Mproducto->lista_productos_page(1,10),
+                    'caminante'=>1,
+                    ); 
         $this->load->view('assets/header');
-        $this->load->view('assets/menu');
         $this->load->view('producto/lista_producto', $data);
         $this->load->view('assets/footer');
     }
 
-    public function page_sig()
-        { 
-          $caminante = $_GET['cam'];
-          echo $ini = ($caminante*10)+1;
-
-          echo " - ";
-          $caminante = $caminante+1;
-          echo $fin = $caminante*10;
- 
-          $size = sizeof($this->Mproducto->size_productos());
-
-          if($fin <= $size )
-          {
-            $lista = $this->Mproducto->lista_productos_page($ini,$fin);
-            $data = array('productos' => $lista, "caminante" => $caminante);
-
-            //print_r($data);
-
-            $this->load->view('assets/header');
-            $this->load->view('producto/lista_producto', $data);
-            $this->load->view('assets/footer');
-            }
-            else
-            {
-                $lista = $this->Mproducto->lista_productos_page(1,10);
-                $data = array('productos' => $lista, "caminante" => 1);
-
-                //print_r($data);
-
-                $this->load->view('assets/header');
-                $this->load->view('producto/lista_producto', $data);
-                $this->load->view('assets/footer');
-
-            }
-        
-        }
-
-        public function page_ant()
-        { 
-          $caminante = $_GET['cam']-1; 
-          
-          if($caminante>0)
-          {
-            $ini = (($caminante-1)*10)+1;
-            //$caminante = $caminante+1;
-            $fin = $caminante*10;
-         
-        
-            $lista = $this->Mproducto->lista_productos_page($ini,$fin);
-            $data = array('productos' => $lista, "caminante" => $caminante);
-
-           
-
-            $this->load->view('assets/header');
-            $this->load->view('producto/lista_producto', $data);
-            $this->load->view('assets/footer');
-          }
-          else { 
-
-            $lista = $this->Mproducto->lista_productos_page(1,10);
-            $data = array('productos' => $lista, "caminante" => 1);
-
-            //print_r($data);
-
-            $this->load->view('assets/header');
-            $this->load->view('producto/lista_producto', $data);
-            $this->load->view('assets/footer');
-
-          }
-        
-        }
 
     public function modificar_producto() {
         $id_producto = trim($_GET['id']);
@@ -177,4 +92,76 @@ class Cproducto extends CI_Controller {
             echo "Error: No se ha proporcionado el ID del producto.";
         }
     }
+
+//FUNCIONES DE PAGINACION
+       public function page_sig()
+    { 
+            $caminante = $_GET['cam'];
+            $ini=$caminante*10;
+         
+ 
+          $size = sizeof($this->Mproducto->size_productos());
+          $operacion= $size/10;
+          $operacion=round($operacion, 0);
+          $operacion=$operacion-1;
+
+          if($caminante <= $operacion )
+          {
+            $lista = $this->Mproducto->lista_productos_page($ini,10);
+            $caminante=$caminante+1;
+            $data = array('productos' => $lista, "caminante" => $caminante);
+
+            //print_r($data);
+
+            $this->load->view('assets/header');
+            $this->load->view('producto/lista_producto', $data);
+            $this->load->view('assets/footer');
+            }
+            else
+            {
+                $lista = $this->Mproducto->lista_productos_page(1,10);
+                $data = array('productos' => $lista, "caminante" => 1);
+
+                //print_r($data);
+
+                $this->load->view('assets/header');
+                $this->load->view('producto/lista_producto', $data);
+                $this->load->view('assets/footer');
+
+            }
+        
+        }
+
+        public function page_ant()
+        { 
+          $caminante = $_GET['cam']-1; 
+          
+          if($caminante>0)
+          {
+             $ini = (($caminante)*10);
+            //$caminante = $caminante+1;
+        
+         
+            $lista = $this->Mproducto->lista_productos_page($ini,10);
+            $data = array('productos' => $lista, "caminante" => $caminante);
+
+            $this->load->view('assets/header');
+            $this->load->view('producto/lista_producto', $data);
+            $this->load->view('assets/footer');
+          }
+          else { 
+
+            $lista = $this->Mproducto->lista_productos_page(1,10);
+            $data = array('productos' => $lista, "caminante" => 1);
+
+            //print_r($data);
+
+            $this->load->view('assets/header');
+            $this->load->view('producto/lista_producto', $data);
+            $this->load->view('assets/footer');
+
+          }
+        
+        }
+
 }

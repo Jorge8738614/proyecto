@@ -17,29 +17,12 @@ class Musuario extends CI_Model {
         return $this->db->insert('usuario', $data);
     }
 
-    public function size_usuarios()
-    {       $this->db->select('*');
-            //$this->db->where('estado_usuario', 1);  // Ajusta aquí si el nombre es diferente 
-            $resultados= $this->db->get('usuario');
-            return $resultados -> result(); //devuelve el resultado
-    }
-
     public function lista_usuarios()
     {
             $this->db->select('*');
             $this->db->from('usuario');
             $this->db->where('estado_usuario', 1);  // Ajusta aquí si el nombre es diferente
             return $this->db->get(); // Devuelve el resultado
-    }
-
-  
-    public function lista_usuarios_page($ini,$fin)
-    {
-            $this->db->select('*');
-            //$this->db->where('estado_usuario', 1);  // Ajusta aquí si el nombre es diferente
-            $this->db->limit($fin, $ini); 
-            $resultados= $this->db->get('usuario');
-            return $resultados -> result(); //devuelve el resultado
     }
 
     public function lista_usuarios_deshabilitados()
@@ -92,23 +75,21 @@ class Musuario extends CI_Model {
         return $this->db->count_all_results('usuario');
     }
 
-    // Nuevo método para obtener usuarios con paginación
-    public function get_users($limit, $start)
+//FUNCIONES PARA PAGINACION
+
+       public function size_usuarios()    
+    {       $this->db->select('*');
+            //$this->db->where('estado_usuario', 1);  // Ajusta aquí si el nombre es diferente 
+            $resultados= $this->db->get('usuario');
+            return $resultados -> result(); //devuelve el resultado
+    }
+    public function lista_usuarios_page($ini,$fin)
     {
-        //$this->db->select('*');
-       // $this->db->from('usuario');
-       // $this->db->where('estado_usuario', 1); // Solo usuarios activos
-       // $this->db->limit($limit, $start);
-       // $query = $this->db->get();
-       // return $query->result();
-
-    $this->db->select('nombre_completo, apellido, alias, id_rol, fecha_creacion, id_usuario');
-    $this->db->from('usuario');
-    $this->db->where('estado_usuario', 1);
-    $this->db->limit($limit, $start);
-    $query = $this->db->get();
-
-    return $query->result();
+            $this->db->select('*');
+            //$this->db->where('estado_usuario', 1);  // Ajusta aquí si el nombre es diferente
+            $this->db->limit(10, $ini); 
+            $resultados= $this->db->get('usuario');
+            return $resultados -> result(); //devuelve el resultado
     }
 
 

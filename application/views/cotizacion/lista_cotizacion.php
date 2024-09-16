@@ -3,7 +3,7 @@
         <!-- Título y Formulario de búsqueda -->
         <div class="row mb-3">
             <div class="col-md-8">
-                <h2><i class="fas fa-file-alt"></i> Lista de Contratos</h2>
+                <h2><i class="fas fa-file-alt"></i> Lista de cotizaciones</h2>
             </div>
             <div class="col-md-4">
                 <div class="form-inline float-right">
