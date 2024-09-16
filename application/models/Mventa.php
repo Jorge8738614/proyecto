@@ -63,5 +63,47 @@ class Mventa extends CI_Model {
         $this->db->delete('carrito');
     }
 
+    public function obtener_ventas() {
+        $this->db->select('*');
+        $this->db->from('venta');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_producto($id_venta)
+    {
+        $this->db->select('*');
+        $this->db->from('venta');
+        $this->db->where('id_venta', $id_venta);
+        $query = $this->db->get();
+        return $query->result();       
+    }
+
+    public function recuperar_venta($id_venta)
+
+    {
+        $this->db->select('*');
+        $this->db->from('venta');
+        $this->db->where('id_venta',$id_venta);  // Ajusta aquí si el nombre es diferente
+        $resultados = $this->db->get();
+         return $resultados -> result(); // Devuelve el re
+    }
+
+    // FUNCIONES DE PAGINACION PARA VENTA
+    public function size_venta()    
+    {       $this->db->select('*');
+            //$this->db->where('estado_usuario', 1);  // Ajusta aquí si el nombre es diferente 
+            $resultados= $this->db->get('venta');
+            return $resultados -> result(); //devuelve el resultado
+    }
+    public function lista_venta_page($ini,$fin)
+    {
+            $this->db->select('*');
+            //$this->db->where('estado_usuario', 1);  // Ajusta aquí si el nombre es diferente
+            $this->db->limit(10, $ini); 
+            $resultados= $this->db->get('venta');
+            return $resultados -> result(); //devuelve el resultado
+    }
+
 
 }

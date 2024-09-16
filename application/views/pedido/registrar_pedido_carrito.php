@@ -8,7 +8,6 @@
                 <form method="POST" action="<?php echo base_url();?>Cpedido/registrar_carrito">
 
                     <input type="text" name="codigo_car" value="<?php echo $codigo_car; ?>" >
-                    
                     <div class="form-group">
                          <label for="productos" class="sr-only">Productos:</label>
                         <select name="cliente" class="form-control form-control-sm">
@@ -48,7 +47,7 @@
 
           <div class="col-lg-7 col-md-7 col-sm-12">
 
-            <h4> LISTA DE PROPUCTOS A PEDIR </h4>
+            <h4> LISTA DE PRODUCTOS A PEDIR </h4>
 
             <div class="table-responsive" style="overflow: auto; height: 350px;">
                 
@@ -67,7 +66,6 @@
                    <?php
                      $i=0;
                      $total_venta = 0;
-                     //$total_cambio =0;
                      foreach( $carrito as $car )
                      {  $i++;
                         $codigo_car = $car->codigo_car;
@@ -96,8 +94,7 @@
     
 
                     <?php 
-                       $total_venta = $total_venta +($cantidad_car*$costo_car);
-                       //$total_cambio = $cambio - $total_venta;                  
+                       $total_venta = $total_venta +($cantidad_car*$costo_car);                
                       }
                     ?>
                     
@@ -122,7 +119,7 @@
                         <input type="text" class="form-control" name="pago" placeholder="0.00" autocomplete="off"> 
                     </td>
                     <td>
-                        <input type="text" class="form-control" name="cambio" placeholder="0.00" value="<?php //echo $total_cambio; ?>"> 
+                        <input type="text" class="form-control" name="cambio" placeholder="0.00" value=""> 
                     </td>
                 </tr>
                 
