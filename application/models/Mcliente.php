@@ -57,11 +57,11 @@ class Mcliente extends CI_Model {
             $resultados= $this->db->get('cliente');
             return $resultados -> result(); //devuelve el resultado
     }
-    public function lista_clientes_page($ini,$fin)
+    public function lista_clientes_page($caminante)
     {
             $this->db->select('*');
             //$this->db->where('estado_usuario', 1);
-            $this->db->limit(10, $ini); 
+            $this->db->limit( 10,$caminante); 
             $resultados= $this->db->get('cliente');
             return $resultados -> result(); //devuelve el resultado
     }

@@ -3,8 +3,7 @@
     <!-- Título y Formulario de búsqueda -->
     <div class="row mb-3">
         <div class="col-md-8">
-            <h4><i class="fas fa-file-alt"></i> Lista de Ventas</h4>
-
+            <h2><i class="fas fa-file-alt"></i> Lista de Ventas</h2>
         </div>
         <div class="col-md-4">
             <div class="form-inline float-right">
@@ -25,6 +24,10 @@
                 <button class="btn btn-info"><i class="fas fa-search"></i></button>
             </div>
         </div>
+        <div class="col-md-6 text-right">
+            <button class="btn btn-success mr-2">REGISTRAR VENTA</button>
+            <button class="btn btn-danger">VENTAS CANCELADAS</button>
+        </div>
     </div>
 
     <!-- Tabla de ventas -->
@@ -34,8 +37,8 @@
                 <thead class="thead-light">
                     <tr>
                         <th>Nro. Venta</th>
-                        <th>Fecha de Venta</th>
                         <th>Cliente</th>
+                        <th>Fecha de Venta</th>
                         <th>Total</th>
                         <th>Acciones</th>
                     </tr>
@@ -43,22 +46,19 @@
                 <tbody>
                     <?php
                     $i = 0;
-                    $aux=0;
                     foreach ($ventas as $vnt) {
                         $i++;
-                        $aux++;
                         ?>
                         <tr>
-                            <td><?php echo $vnt->id_venta;; ?></td>
+                            <td><?php echo $vnt->id_venta; ?></td>
+                            <td><?php echo $vnt->id_cliente; ?></td>
                             <td><?php echo $vnt->fecha_venta; ?></td>
-                            <td><?php echo $vnt->id_cliente; // Aquí puedes mostrar el nombre del cliente si lo tienes ?></td>
                             <td><?php echo $vnt->total; ?></td>
                             <td>
                                 <form method="GET" action="<?php echo base_url(); ?>Cventa/ver_venta">
-                                <input type="text" name="id" value="<?php echo $vnt->id_venta; ?>" style="display: none;">
-                               <button class="btn btn-info"><i class="fas fa-eye"></i> Ver</button>
+                                    <input type="hidden" name="id" value="<?php echo $vnt->id_venta; ?>">
+                                    <button class="btn btn-info"><i class="fas fa-eye"></i> Ver</button>
                                 </form>
-                                
                             </td>
                         </tr>
                         <?php
@@ -66,23 +66,25 @@
                     ?>
                 </tbody>
             </table>
-            <?php //echo "la suma es igual a : ";echo $aux; ?>
 
             <!-- Paginación -->
-    <div class="pagination">
-    <table class="table table-bordered">
-        <tr>
-                <td> <a href="<?php echo base_url(); ?>Cventa/page_ant?sig=<?php echo $caminante; ?>&cam=<?php echo $caminante; ?>"> <span></span> < anterior </a> 
-                </td>
-                <td style="width: 50px; text-align: center;"> <?php echo $caminante; ?> <center>  <input type="hidden" value="1" name="caminante"> </center> 
-                 </td>
-                <td> 
-                    <a href="<?php echo base_url(); ?>Cventa/page_sig?sig=<?php echo $caminante; ?>&cam=<?php echo $caminante; ?>"> <span></span> siguiente > </a> 
-                </td>
-        </tr>
-    </table>
-</div>
-
+            <nav>
+                <ul class="pagination justify-content-center">
+                    <li class="page-item">
+                        <a class="page-link" href="<?php echo base_url(); ?>Cventa/page_ant?sig=<?php echo $caminante; ?>&cam=<?php echo $caminante; ?>">
+                            < anterior
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <span class="page-link"><?php echo $caminante; ?></span>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="<?php echo base_url(); ?>Cventa/page_sig?sig=<?php echo $caminante; ?>&cam=<?php echo $caminante; ?>">
+                            siguiente >
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
 </div>

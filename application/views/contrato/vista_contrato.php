@@ -25,8 +25,8 @@
                 </div>
             </div>
             <div class="col-md-6 text-right">
-                <button class="btn btn-success mr-2"><i class="fas fa-file-excel"></i></button>
-                <button class="btn btn-danger"><i class="fas fa-file-pdf"></i></button>
+                <button class="btn btn-success mr-2">REGISTRAR CONTRATO</button>
+                <button class="btn btn-danger">CONTRATOS VENCIDOS</button>
             </div>
         </div>
 
@@ -36,21 +36,25 @@
                 <table class="table table-bordered">
                     <thead class="thead-light">
                         <tr>
-                            <th>Nro. Cotización</th>
-                            <th>Fecha - Hora</th>
+                            <th>Nro. Contrato</th>
                             <th>Cliente</th>
                             <th>Vendedor</th>
-                            <th>Total Cotización</th>
+                            <th>Fecha - inicio</th>
+                            <th>Fecha - final</th>
+                            <th>Detalles del contrato</th>
+                            <th>Documento Escaneado</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>VGT001</td>
-                            <td>2023-12-26 14:04:36</td>
                             <td>Aris Hernandez</td>
                             <td>Jorge Hernandez</td>
-                            <td>S/. 141.6</td>
+                            <td>2023-12-26 14:04:36</td>
+                            <td>2023-12-26 14:04:36</td>
+                            <td>contrato de la familia perez , ubicada en la calles raul prada</td>
+                            <td>img</td>
                             <td>
                                 <button class="btn btn-info"><i class="fas fa-eye"></i></button>
                             </td>

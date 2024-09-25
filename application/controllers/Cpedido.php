@@ -77,15 +77,15 @@ class Cpedido extends CI_Controller {
     {
         $id_carrito=$_POST['id_carrito'];
         $this->Mpedido->eliminar_carrito_pedido($id_carrito);
-        //redirect('pedido/registrar_pedido_carrito');
+        
         $data=array(
          "productos"=>$this->Mproducto->lista_productos(),
          "pedidos"=> $this->Mpedido->listar_pedidos(),
          "ultimo_pedido"=> $this->Mpedido->listar_ultimo_pedido(),
          "clientes"=> $this->Mcliente->lista_clientes(),);
 
-        //print_r($data);
-
+            //print_r($data);
+    
         $this->load->view('assets/header');
         $this->load->view('pedido/registrar_pedido', $data);
         $this->load->view('assets/footer');

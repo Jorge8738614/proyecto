@@ -27,7 +27,7 @@
 
         <!-- Custom Fonts -->
         <link href="<?php echo base_url(); ?>startmin/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-  
+
 </head>
 <body> 
 <div class="row" style="margin:0px; background: ;" > 
@@ -115,7 +115,7 @@ if ($id_usuario_sesion>0) {
                         </li>
 
                          <li class="nav-item">
-                            <a class="nav-link" href="http://localhost/proyecto/Ccotizacion/vista_cotizacion">
+                            <a class="nav-link" href="http://localhost/proyecto/Ccotizacion/registrar_cotizacion">
                                 <span data-feather="users"></span>
                                 Cotizaciones
                             </a>
@@ -158,4 +158,4 @@ if ($id_usuario_sesion>0) {
   <!-- final del fluid -->
   </div>
 
-  <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12" style="background: ; height:600px;">
+  <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12" style="background: ; height:auto;">

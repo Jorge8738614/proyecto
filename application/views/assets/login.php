@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ingreso al Sistema</title>
+    <title>Ingreso al Sistema - Vigitronic</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
-            background: linear-gradient(135deg, #c2e9fb 0%, #e6f7ff 100%);
-            font-family: 'Arial', sans-serif;
-        }
+        .body {
+        background-color: #87CEFA; /* Fondo celeste */
+        font-family: 'Arial', sans-serif;
+            }
         .login-container {
             margin-top: 100px;
         }
         .login-form {
-            background-color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.9);
             padding: 40px;
             border-radius: 12px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -27,7 +27,7 @@
         .login-form h5 {
             margin-bottom: 30px;
             font-weight: bold;
-            color: #333;
+            color: #2c3e50;
         }
         .form-control {
             border-radius: 8px;
@@ -41,12 +41,12 @@
         .btn-primary {
             border-radius: 8px;
             padding: 10px 20px;
-            background-color: #007bff;
+            background-color: #28a745;
             border: none;
             transition: background-color 0.3s, transform 0.3s;
         }
         .btn-primary:hover {
-            background-color: #0056b3;
+            background-color: #218838;
             transform: translateY(-2px);
         }
         .text-right a {
@@ -78,49 +78,29 @@
     <div class="row justify-content-center">
         <div class="col-lg-6 col-md-8 col-sm-10 col-xs-12">
             <div class="login-form text-center">
-                <h5>INGRESO AL SISTEMA</h5>
-                <div>
-                </div>
+                <h5>INICIAR SESIÓN</h5>
 
-               <form method="POST" action="<?php echo base_url();?>Clogin/validarusuario">
+                <form method="POST" action="<?php echo base_url();?>Clogin/validarusuario">
                     <div class="form-group">
                         <label>Alias De Usuario</label>
-                        <input type="text" class="form-control" placeholder="* escriba su alias" name="alias" autocomplete="off" >
+                        <input type="text" class="form-control" placeholder="* escriba su alias" name="alias" autocomplete="off" required>
                         <div id="resp_alias"></div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-12">
                             <label>Contraseña</label>
-                            <input type="password" class="form-control" placeholder="* escriba su password" name="password">
+                            <input type="password" class="form-control" placeholder="* escriba su password" name="password" required>
                             <div id="resp_alias"></div>
                         </div>
-                        <!--
-                        <div class="form-group col-md-6">
-                        <label for="cargo">Cargo</label>
-                        <select class="form-control" id="cargo" name="cargo" required>
-                            <option value="" disabled selected>* Seleccione su cargo</option>
-                            <option value="admin">Admin</option>
-                            <option value="vendedor">Vendedor</option>
-                            <option value="distribuidor">Distribuidor</option>
-                        </select>
-                        <div id="resp_cargo"></div>
-                    </div>
-                    -->
                     </div>
                     <button type="submit" class="btn btn-primary btn-md">Ingresar</button>
-                  
-                    <div class="text-right mt-3">
-                        <p class="mb-1">
-                            <a href="forgot-password.html">Cambiar contraseña</a>
-                        </p>
-                    </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
 <footer>
-   
+
 </footer>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

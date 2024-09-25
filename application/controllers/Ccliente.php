@@ -18,8 +18,8 @@ class Ccliente extends CI_Controller {
 
     public function vista_clientes()
     {
-        $data = array('clientes' => $this->Mcliente->lista_clientes_page(1,10),
-                    'caminante'=>1,
+        $data = array('clientes' => $this->Mcliente->lista_clientes_page(1),
+                      'caminante'=>1,
                     ); 
 
         $this->load->view('assets/header');
@@ -122,19 +122,22 @@ class Ccliente extends CI_Controller {
 
        public function page_sig()
     { 
-            $caminante = $_GET['cam'];
-            $ini=$caminante*10;
-         
- 
-          $size = sizeof($this->Mcliente->size_clientes());
+          $caminante = $_GET['cam']+1;
+          $page = ($caminante-1)*10;
+
+          echo "pag ="; echo $page;
+          echo " cam = "; echo $caminante;
+           
+          /*$size = sizeof($this->Mcliente->size_clientes());
           $operacion= $size/10;
           $operacion=round($operacion, 0);
-          $operacion=$operacion-1;
+          $operacion = $operacion+1;*/
 
-          if($caminante <= $operacion )
-          {
-            $lista = $this->Mcliente->lista_clientes_page($ini,10);
-            $caminante=$caminante+1;
+
+          /*if($caminante <= $operacion )
+          {*/
+            $lista = $this->Mcliente->lista_clientes_page($page);
+             
             $data = array('clientes' => $lista, "caminante" => $caminante);
 
             //print_r($data);
@@ -142,7 +145,8 @@ class Ccliente extends CI_Controller {
             $this->load->view('assets/header');
             $this->load->view('cliente/lista_cliente', $data);
             $this->load->view('assets/footer');
-            }
+
+           /* }
             else
             {
                 $lista = $this->Mcliente->lista_clientes_page(1,10);
@@ -154,37 +158,38 @@ class Ccliente extends CI_Controller {
                 $this->load->view('cliente/lista_cliente', $data);
                 $this->load->view('assets/footer');
 
-            }
+            }*/
         
         }
 
         public function page_ant()
         { 
           $caminante = $_GET['cam']-1; 
+          $page = ($caminante-1)*10;
+          echo "pag ="; echo $page;
+          echo " cam = "; echo $caminante;
           
           if($caminante>0)
-          {
-            $ini = (($caminante)*10);
-            //$caminante = $caminante+1;
-        
-         
-            $lista = $this->Mcliente->lista_clientes_page($ini,10);
+          { 
+            
+            $lista = $this->Mcliente->lista_clientes_page($page);
             $data = array('clientes' => $lista, "caminante" => $caminante);
 
             $this->load->view('assets/header');
             $this->load->view('cliente/lista_cliente', $data);
             $this->load->view('assets/footer');
+         
           }
           else { 
 
-            $lista = $this->Mcliente->lista_clientes_page(1,10);
+            $lista = $this->Mcliente->lista_clientes_page(1);
             $data = array('clientes' => $lista, "caminante" => 1);
 
             $this->load->view('assets/header');
             $this->load->view('cliente/lista_cliente', $data);
             $this->load->view('assets/footer');
 
-          }
+          } 
         
         }
 }

@@ -3,11 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Mventa extends CI_Model {
 
-    // Inserta un nuevo pedido en la base de datos
-   // public function insertar_pedido($datos_pedido) {
-    //    $this->db->insert('pedido', $datos_pedido);
-   // }
-
     public function listar_venta() {
         $query = $this->db->get('venta');
         return $query->result();

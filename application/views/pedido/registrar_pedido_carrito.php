@@ -84,10 +84,10 @@
                         <td> <?php echo $costo_car; ?> </td>
                         <td> <?php echo ($cantidad_car*$costo_car); ?> </td>
                         <td>
-
-                            <input type="hidden" name="id_carrito" value="<?php echo $car->id_carrito;?>" >
-                            <button type="submit" class="btn btn-danger btn-xs">Eliminar</button>
-                            </form>
+                             <form method="POST" action="<?php echo base_url(); ?>Cpedido/eliminar_carrito_bd">
+                                 <input type="hidden" name="id_carrito" value="<?php echo $car->id_carrito; ?>">
+                                 <button type="submit" class="btn btn-danger btn-xs">Eliminar</button>
+                             </form>
 
                         </td>
                     </tr>
