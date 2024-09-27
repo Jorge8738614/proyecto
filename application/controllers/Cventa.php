@@ -87,6 +87,7 @@ class Cventa extends CI_Controller {
         
         }
 
+
         public function page_ant()
         { 
           $caminante = $_GET['cam']-1; 

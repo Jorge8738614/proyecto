@@ -29,7 +29,7 @@ class Mproducto extends CI_Model {
         $this->db->from('producto');
         $this->db->where('id_producto', $id_producto);
         $query = $this->db->get();
-        return $query->row(); // Devuelve una única fila
+        return $query->result(); // Devuelve una única fila
     }
 
     public function modificar_producto($id_producto, $data) {

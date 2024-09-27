@@ -12,9 +12,16 @@ class Ccotizacion extends CI_Controller {
 
     public function registrar_cotizacion()
     {
-        $codigo_c = $this->Mcotizacion->get_cotizacion_id();
-        if(sizeof($codigo_c)==0) { $codigo_car="COD_1"; }
-        else { $codigo_car = "COD_".$codigo_c; }
+         $codigo_c = $this->Mcotizacion->get_cotizacion_id();
+
+        
+            if (sizeof($codigo_c) == 0) {
+                $codigo_car = "COD_1";
+            } else {
+                // Acceder al primer elemento del array y luego a la propiedad del objeto
+                $codigo_car = "COD_" . $codigo_c[0]->id_cotizacion;  // Acceder al primer objeto en el array
+            }
+
         
         $data = array(
          "productos"=>$this->Mproducto->lista_productos(),
@@ -55,8 +62,6 @@ class Ccotizacion extends CI_Controller {
         
             
             $codigo_car = $_POST["codigo_car"];
-            $id_cliente = $_POST["cliente"];
-            $prioridad = $_POST["prioridad"];
             $id_producto = $_POST["producto"];
             $cantidad_car = $_POST["cantidad"];
 
@@ -65,8 +70,6 @@ class Ccotizacion extends CI_Controller {
 
             $data = array(
             "codigo_car" => $codigo_car,
-            "id_cliente" => $id_cliente,
-            "prioridad" => $prioridad,
             "id_producto" => $id_producto,
             "cantidad_car" => $cantidad_car,
             "costo_car" => $costo_car,
@@ -79,16 +82,16 @@ class Ccotizacion extends CI_Controller {
             $data1 = array(
              "productos"=>$this->Mproducto->lista_productos(),
              "cotizacion"=> $this->Mcotizacion->listar_cotizacion(),
-             "ultimo_cotizacion"=> $this->Mpedido->listar_ultimo_pedido(),
-             "codigo_car_co" => $codigo_car_co,
-             "carrito"=> $this->Mpedido->lista_carrito_pedido($codigo_car_co),
+             "ultimo_cotizacion"=> $this->Mcotizacion->listar_ultima_cotizacion(),
+             "codigo_car" => $codigo_car,
+             "carrito"=> $this->Mcotizacion->lista_carrito_cotizacion($codigo_car),
              "usuarios"=> $this->Musuario->lista_usuarios(),
               );
             //print_r($data1);
 
             //INESERCCIONEN LA TABLA DETALLE VENTAS
-            //$venta_data = array(
-                //"id_cliente" => $id_cliente,
+            //$cotizacion_data = array(
+                //"id_producto" => $id_producto,
                 //"total" => $cantidad_car * $costo_car,
             //);
 
@@ -126,7 +129,6 @@ class Ccotizacion extends CI_Controller {
         $total=$_POST['total'];
         $pago=$_POST['pago'];
         $cambio=$_POST['cambio'];
-        $id_cliente=$_POST['id_cliente'];
         $fecha_venta=date("YmdHis");
 
         echo $codigo_car;
@@ -139,7 +141,7 @@ class Ccotizacion extends CI_Controller {
         echo "<br>";
         echo $cambio = $pago - $total;
         echo "<br>";
-        echo $id_cliente;
+        //echo $id_cliente;
         
         $data= array(
             "codigo_venta"=>$codigo_car,

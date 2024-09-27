@@ -125,8 +125,8 @@ class Ccliente extends CI_Controller {
           $caminante = $_GET['cam']+1;
           $page = ($caminante-1)*10;
 
-          echo "pag ="; echo $page;
-          echo " cam = "; echo $caminante;
+          //echo "pag ="; echo $page;
+          //echo " cam = "; echo $caminante;
            
           /*$size = sizeof($this->Mcliente->size_clientes());
           $operacion= $size/10;
@@ -166,8 +166,8 @@ class Ccliente extends CI_Controller {
         { 
           $caminante = $_GET['cam']-1; 
           $page = ($caminante-1)*10;
-          echo "pag ="; echo $page;
-          echo " cam = "; echo $caminante;
+          //echo "pag ="; echo $page;
+          //echo " cam = "; echo $caminante;
           
           if($caminante>0)
           { 

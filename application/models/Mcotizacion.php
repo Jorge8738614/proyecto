@@ -18,7 +18,7 @@ class Mcotizacion extends CI_Model {
         return $query->result();    
     }
 
-    public function registrar_cotizacion($data)
+    public function registrar_carrito_cotizacion($data)
     {
          $this->db->insert('cotizacion', $data);
     }
@@ -28,10 +28,10 @@ class Mcotizacion extends CI_Model {
          $this->db->insert('detalle_cotizacion', $data);
     }
 
-    public function vaciar_carrito($codigo_car_co)
+    public function vaciar_carrito($codigo_car)
     {
-        $this->db->where('codigo_car_co',$codigo_car_co);
-        //$this->db->where("c.codigo_cot", $codigo_car); // Debería ser $codigo_cot
+        $this->db->where('codigo_car',$codigo_car);
+        //$this->db->where("c.codigo_cot", $codigo_car// Debería ser $codigo_cot
         $this->db->delete('carrito');
     }
 
@@ -46,12 +46,12 @@ class Mcotizacion extends CI_Model {
     }
 
     
-    public function lista_carrito_cotizacion($codigo_car_co)
+    public function lista_carrito_cotizacion($codigo_car)
     {
         $this->db->select('*');
         $this->db->join("producto p", "p.id_producto = c.id_producto");
         //$this->db->join("cliente cl", "cl.id_cliente = c.id_cliente");
-        $this->db->where("c.codigo_car_co", $codigo_car_co);
+        $this->db->where("c.codigo_car", $codigo_car);
         $query = $this->db->get('carrito_co c');
         return $query->result(); // Devuelve una única fila
     }
