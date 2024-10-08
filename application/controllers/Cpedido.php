@@ -27,6 +27,22 @@ class Cpedido extends CI_Controller {
         $this->load->view('assets/footer');
     }
 
+      public function formulario_pedidos()
+    {
+        $data=array(
+         "productos"=>$this->Mproducto->lista_productos(),
+         "pedidos"=> $this->Mpedido->listar_pedidos(),
+         "ultimo_pedido"=> $this->Mpedido->listar_ultimo_pedido(),
+         "clientes"=> $this->Mcliente->lista_clientes(),);
+
+        //print_r($data);
+
+        $this->load->view('assets/header');
+        $this->load->view('pedido/form_pedido', $data);
+        $this->load->view('assets/footer');
+    }
+     
+
     public function registrar_carrito()
     {
         

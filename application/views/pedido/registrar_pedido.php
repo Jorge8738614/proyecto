@@ -1,74 +1,66 @@
- <!-- Registration Section -->
-        <div class="row" style="padding-top:20px;">
-            
-            <div class="col-lg-5 col-md-5 col-sm-12">
-
-                <h4 class="text mb-4"> REGISTRAR DE PEDIDO </h4>
-                <form method="POST" action="<?php echo base_url();?>Cpedido/registrar_carrito" autocomplete="off">
-                    <input type="hidden" name="codigo_car" value="<?php echo $codigo_car = "PS_".$ultimo_pedido[0]->id_venta; ?>" >
-                    <div class="form-group">
-                         <label for="productos" class="sr-only">Productos:</label>
-                        <select name="cliente" class="form-control form-control-sm">
-                            <?php foreach ($clientes as $cliente) { ?>
-                                <option value="<?php echo $cliente->id_cliente; ?>" > <?php echo $cliente->nombre; ?> </option>
-                            <?php } ?>
-                        </select>
+ <div id="page-wrapper">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1 class="page-header">Pedido Rapido</h1>
+                        </div>
+                        <!-- /.col-lg-12 -->
                     </div>
-                    <div class="form-group">
-                    <label for="prioridad" class="sr-only">Prioridad:</label>
-                    <select name="prioridad" class="form-control form-control-sm" required>
-                        <option value="1">  Alta   </option>
-                        <option value="2">  Media  </option>
-                        <option value="3">  Baja   </option>
-                    </select>
+                    <!-- /.row -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                     <table class="table">
+                                            <tr>
+                                                <td style="width: 75%;">
+                                                    <form method="GET" action="<?php echo base_url(); ?>">
+                                                        <input name="txt_buscar" type="text" placeholder="Buscar Pedido" class="form-control "  >   
+                                                </td>
+                                                <td>
+                                                    <button type="submit" class="btn btn-primary btn-sm" > Buscar </button>
+                                                 </form>
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-primary btn-sm" href="<?php echo base_url(); ?>Cpedido/formulario_pedidos" class="text-center">Nuevo Pedido</a>
+
+                                                </td>
+                                            </tr>
+                                        </table>
+                                </div>
+                                <!-- /.panel-heading -->
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                            <thead>
+                                                <tr>
+                                                    <tr>
+                                                    <th> # </th>
+                                                    <th> producto </th>
+                                                    <th> cantidad </th>
+                                                    <th> costo </th>
+                                                    <th> subtotal </th>
+                                                    <th> Cancelar Pedido</th>
+                                                </tr> 
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                              
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- /.panel-body -->
+                            </div>
+                            <!-- /.panel -->
+                        </div>
+                        <!-- /.col-lg-12 -->
                     </div>
-                    <div class="form-group">
-                            <label for="productos" class="sr-only">Productos:</label>
-                            <select name="producto" class="form-control form-control-sm">
-                                <?php foreach ($productos as $producto) { ?>
-                                    <option value="<?php echo $producto->id_producto; ?>"><?php echo $producto->producto_nombre; ?> <label for="cantidades" class="sr-only">Cantidades:</label> <?php echo " cantidad "; echo $producto->producto_cantidad; ?></option>
-                                <?php } ?>
-                            </select>
-                    </div>
-                    <div>
-                        <input type="number" name="cantidad" class="form-control form-control-sm" placeholder=" Cantidad " required min="0">
-                    </div>
-                    <br>
-                    <div>
-                        <button type="submit" class="btn btn-primary btn-md"> Agregar </button>
-                        <a href="<?php echo base_url(); ?>Ccliente/vista_clientes" class="btn btn-danger"> Cancelar </a>   
-                    </div>
-            </form>
 
-         <!-- FINAL DIV -->
-          </div>
+            <!-- /#page-wrapper -->
 
-          <div class="col-lg-7 col-md-7 col-sm-12">
-
-            <h4> LISTA DE PRODUCTOS A PEDIR </h4>
-
-            <div class="table-responsive" >
-                
-                <table class="table table-bordered">
-                   
-                   <tr>
-                       <th> # </th>
-                       <th> producto </th>
-                       <th> cantidad </th>
-                       <th> costo </th>
-                       <th> subtotal </th>
-                       <th> </th>
-                   </tr> 
-                    
-                </table>
-
-            </div>
-
-          </div>
-
-        <!-- FINAL ROW -->    
         </div>
-
+</div>
 
 
  

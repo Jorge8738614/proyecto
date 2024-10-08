@@ -1,110 +1,84 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ingreso al Sistema - Vigitronic</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .body {
-        background-color: #87CEFA; /* Fondo celeste */
-        font-family: 'Arial', sans-serif;
-            }
-        .login-container {
-            margin-top: 100px;
-        }
-        .login-form {
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .login-form:hover {
-            transform: scale(1.02);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
-        }
-        .login-form h5 {
-            margin-bottom: 30px;
-            font-weight: bold;
-            color: #2c3e50;
-        }
-        .form-control {
-            border-radius: 8px;
-            border: 1px solid #ddd;
-            padding: 10px;
-        }
-        .form-control:focus {
-            border-color: #007bff;
-            box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25);
-        }
-        .btn-primary {
-            border-radius: 8px;
-            padding: 10px 20px;
-            background-color: #28a745;
-            border: none;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-        .btn-primary:hover {
-            background-color: #218838;
-            transform: translateY(-2px);
-        }
-        .text-right a {
-            color: #007bff;
-            text-decoration: none;
-            font-size: 14px;
-        }
-        .text-right a:hover {
-            text-decoration: underline;
-        }
-        footer {
-            background: rgba(0, 0, 0, 0.1); /* Fondo semitransparente */
-            padding: 15px 0;
-            text-align: center;
-            border-top: 1px solid rgba(0, 0, 0, 0.2);
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-        }
-        footer p {
-            margin: 0;
-            color: #333;
-            font-size: 14px;
-        }
-    </style>
-</head>
-<body>
-<div class="container login-container">
-    <div class="row justify-content-center">
-        <div class="col-lg-6 col-md-8 col-sm-10 col-xs-12">
-            <div class="login-form text-center">
-                <h5>INICIAR SESIÓN</h5>
+<html lang="en">
 
-                <form method="POST" action="<?php echo base_url();?>Clogin/validarusuario">
-                    <div class="form-group">
-                        <label>Alias De Usuario</label>
-                        <input type="text" class="form-control" placeholder="* escriba su alias" name="alias" autocomplete="off" required>
-                        <div id="resp_alias"></div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-12">
-                            <label>Contraseña</label>
-                            <input type="password" class="form-control" placeholder="* escriba su password" name="password" required>
-                            <div id="resp_alias"></div>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Startmin - Bootstrap Admin Theme</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="<?php echo base_url(); ?>startmin/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- MetisMenu CSS -->
+        <link href="<?php echo base_url(); ?>startmin/css/metisMenu.min.css" rel="stylesheet">
+
+        <!-- Timeline CSS -->
+        <link href="<?php echo base_url(); ?>startmin/css/timeline.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="<?php echo base_url(); ?>startmin/css/startmin.css" rel="stylesheet">
+
+        <!-- Morris Charts CSS -->
+        <link href="<?php echo base_url(); ?>startmin/css/morris.css" rel="stylesheet">
+
+        <!-- Custom Fonts -->
+        <link href="<?php echo base_url(); ?>startmin/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <div class="login-panel panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">INICIAR SESIÓN</h3>
+                        </div>
+                        <div class="panel-body">
+                            <form role="form" method="POST" action="<?php echo base_url();?>Clogin/validarusuario">
+                                <fieldset>
+                                   <div class="form-group col-md-12" >
+                                        <label>Alias De Usuario</label>
+                                        <input type="text" class="form-control" placeholder="* escriba su alias" name="alias" autocomplete="off" required>
+                                        <div id="resp_alias"></div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <label>Contraseña</label>
+                                            <input type="password" class="form-control" placeholder="* escriba su password" name="password" required>
+                                            <div id="resp_alias"></div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-md">Ingresar</button>
+                                </fieldset>
+                            </form>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-md">Ingresar</button>
-                </form>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-<footer>
 
-</footer>
+       <script src="<?php echo base_url(); ?>startmin/js/jquery.min.js"></script>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="<?php echo base_url(); ?>startmin/js/bootstrap.min.js"></script>
+
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="<?php echo base_url(); ?>startmin/js/metisMenu.min.js"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="<?php echo base_url(); ?>startmin/js/startmin.js"></script>
+    </body>
+
 </html>

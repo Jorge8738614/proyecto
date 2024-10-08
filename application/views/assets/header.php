@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> SISTEMA </title>
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="<?php echo base_url(); ?>bootstrap/css/bootstrap.css">
-  <script src="<?php echo base_url();?>bootstrap/js/bootstrap.js"></script>
-  <!-- jQuery -->
-  <script src="<?php echo base_url(); ?>bootstrap/js/jquery.js"></script>
-   <!-- template startmin-->
-         <!-- Bootstrap Core CSS -->
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Sistema Verzasca</title>
+
+        <!-- Bootstrap Core CSS -->
         <link href="<?php echo base_url(); ?>startmin/css/bootstrap.min.css" rel="stylesheet">
 
         <!-- MetisMenu CSS -->
@@ -28,134 +28,224 @@
         <!-- Custom Fonts -->
         <link href="<?php echo base_url(); ?>startmin/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-</head>
-<body> 
-<div class="row" style="margin:0px; background: ;" > 
-  <?php
-//print_r($this ->session);
-//echo "</br> este es el id usuario : ";
-$id_usuario_sesion = $this->session->userdata('id_usuario_sesion');
-//echo $id_usuario_sesion; echo "</br>";
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
 
-if ($id_usuario_sesion =="") {
-  header("Location: http://localhost/proyecto/Clogin/index");
-}
-if ($id_usuario_sesion>0) {
- // echo "usuario logeado";
-  
-}
-?>
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="background:orange; height: 60px; display: flex; justify-content: space-between; align-items: center; padding: 0 20px;">
-    <h4>MENU DEL SISTEMA</h4> 
+        <body>
 
-    <div style="display: flex; align-items: center;">
-      <span id="username" style="margin-right: 15px; font-weight: bold;">
-        <?php if ($this->session->userdata('alias_sesion')): ?>
-            Usuario: <?= $this->session->userdata('alias_sesion'); ?>
-        <?php else: ?>
-            Usuario no encontrado
-        <?php endif; ?>
-    </span>
-        <!-- Muestra el nombre del usuario -->
-        <button style="background-color: orange; border: none; color: white; padding: 10px 20px; cursor: pointer; font-weight: bold;"> <a class="nav-link" href="<?php echo base_url(); ?>Clogin/salir" > Cerrar sesion</a></button>
-    </div>
-</div>
+        <div id="wrapper">
 
+            <!-- Navigation -->
+            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html">SISTEMA VERZASCA</a>
+                </div>
 
-  <div class="col-lg-2 col-md-2 col-sm-2  hidden-xs" style="background:; height: 500px;" >
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            <!-- Notificaciones  -->
+                <ul class="nav navbar-right navbar-top-links">
+                    <li class="dropdown navbar-inverse">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-bell fa-fw"></i> <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu dropdown-alerts">
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <i class="fa fa-comment fa-fw"></i> New Comment
+                                        <span class="pull-right text-muted small">4 minutes ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                                        <span class="pull-right text-muted small">12 minutes ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <i class="fa fa-envelope fa-fw"></i> Message Sent
+                                        <span class="pull-right text-muted small">4 minutes ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <i class="fa fa-tasks fa-fw"></i> New Task
+                                        <span class="pull-right text-muted small">4 minutes ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <i class="fa fa-upload fa-fw"></i> Server Rebooted
+                                        <span class="pull-right text-muted small">4 minutes ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a class="text-center" href="#">
+                                    <strong>See All Alerts</strong>
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                <!-- CONTROL DE INICIO DE SESION   -->
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-user fa-fw"></i> secondtruth <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li>
+                                <a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            </li>
+                        </ul>
+                    </li>
+                     <!-- FINAL DE CONTROL DE INICIO DE SESION   -->
+                </ul>
+                <!-- /.navbar-top-links -->
+                <!-- final de Notificaciones  -->
+            </nav>
 
-    <style type="text/css">
-        .nav-item{ background: orange; width:200px; margin-top:2px; margin-bottom:2px;  }
-        .nav-item a { color:white; }
-    </style>
-
-    <div class="container-fluid"  style="background:;" >
-        <div class="row" style="background:;" >
-            <!-- Vertical Navbar -->
-            <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
-                <div class="sidebar-sticky" style="background:;" >
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="home"></span>
-                                Inicio
-                            </a>
+            <aside class="sidebar navbar-default" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                         <!-- BUSQUEDA DE MENU  -->
+                        <li class="sidebar-search">
+                            <div class="input-group custom-search-form">
+                                <input type="text" class="form-control" placeholder="Search...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary" type="button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                            <!-- /input-group -->
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="http://localhost/proyecto/Cusuario/vista_usuarios">
-                                <span data-feather="file"></span>
-                                Usuarios
-                            </a>
+                         <!-- FINAL DE BUSQUEDA DE MENU  -->
+                          <!-- INICIO DE MENU IZQUIERDO  -->
+                        <li>
+                            <a href="<?php echo base_url(); ?>Cusuario/menu"><i class="fa fa-dashboard fa-fw"></i> Inicio</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="http://localhost/proyecto/Cproducto/vista_productos">
-                                <span data-feather="shopping-cart"></span>
-                                Productos
-                            </a>
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Usuarios<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="<?php echo base_url(); ?>Cusuario/agregar">Registro de Usuario</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo base_url(); ?>Cusuario/vista_usuarios">Lista de Usuario</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
                         </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="http://localhost/proyecto/Cpedido/registrar_pedidos">
-                                <span data-feather="shopping-cart"></span>
-                                Pedidos Rapidos
-                            </a>
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Productos<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="<?php echo base_url(); ?>Cproducto/agregar">Registro de Productos</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo base_url(); ?>Cproducto/vista_productos">Lista de Productos</a>
+                                </li>
+                            </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="http://localhost/proyecto/Cventa/vista_venta">
-                                <span data-feather="shopping-cart"></span>
-                                Ventas Efectuadas
-                            </a>
+                        <li>
+                            <a href="<?php echo base_url(); ?>Cpedido/registrar_pedidos"><i class="fa fa-edit fa-fw"></i> Pedidos Rapidos</a>
                         </li>
-                                               
-                        <li class="nav-item">
-                            <a class="nav-link" href="http://localhost/proyecto/Ccliente/vista_clientes">
-                                <span data-feather="users"></span>
-                                Clientes
-                            </a>
+                        <li>
+                            <a href="#"><i class="fa fa-wrench fa-fw"></i> Ventas Efectuadas<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="<?php echo base_url(); ?>Cproducto/agregar">Lista de ventas</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo base_url(); ?>Cproducto/vista_productos">Reporte de ventas</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
                         </li>
-
-                         <li class="nav-item">
-                            <a class="nav-link" href="http://localhost/proyecto/Ccotizacion/registrar_cotizacion">
-                                <span data-feather="users"></span>
-                                Cotizaciones
-                            </a>
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Clientes<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="<?php echo base_url(); ?>Ccliente/agregar">Registro de Clientes</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo base_url(); ?>Ccliente/vista_clientes">Lista de Clientes</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
                         </li>
-                         <li class="nav-item">
-                            <a class="nav-link" href="http://localhost/proyecto/Ccotizacion/lista_cotizacion">
-                                <span data-feather="users"></span>
-                                Cotizaciones Efectuadas
-                            </a>
+                        <li>
+                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Cotizaciones<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="flot.html">Registro de Nueva Cotizacion</a>
+                                </li>
+                                <li>
+                                    <a href="morris.html">Lista de Cotizacion</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="http://localhost/proyecto/Ccontrato/vista_contrato">
-                                <span data-feather="users"></span>
-                                Contratos
-                            </a>
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Contratos<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="flot.html">Registro de Contrato</a>
+                                </li>
+                                <li>
+                                    <a href="morris.html">Seguimiento de Contratos</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="bar-chart-2"></span>
-                                Reportes
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="layers"></span>
-                                Configuración
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?php echo base_url(); ?>Clogin/salir" > Cerrar sesion</a> 
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Reportes<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="flot.html">Reporte de Cliente</a>
+                                </li>
+                                <li>
+                                    <a href="morris.html">Reporte de Ventas</a>
+                                </li>
+                                <li>
+                                    <a href="morris.html">Reporte de Cotizaciones</a>
+                                </li>
+                                 <li>
+                                    <a href="morris.html">Reporte de Contratos</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
                         </li>
                     </ul>
                 </div>
-            </nav>
-        <!-- final del row -->
-        </div>
-        <!-- final del fluid -->
-        </div>
-
-  <!-- final del fluid -->
-  </div>
-
-  <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12" style="background: ; height:auto;">
+            </aside>
+            <!-- /.sidebar -->
+            </div>
