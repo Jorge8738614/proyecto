@@ -15,7 +15,7 @@ class Ccontrato extends CI_Controller {
     public function vista_contrato()
     {
         $this->load->view('assets/header');
-        $this->load->view('contrato/vista_contrato');
+        $this->load->view('contrato/registro_contrato');
         $this->load->view('assets/footer');
     }
 }
