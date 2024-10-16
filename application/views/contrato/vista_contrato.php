@@ -1,72 +1,57 @@
-    <!-- Sección principal -->
-    <div class="container mt-4">
-        <!-- Título y Formulario de búsqueda -->
-        <div class="row mb-3">
-            <div class="col-md-8">
-                <h2><i class="fas fa-file-alt"></i> Lista de Contratos</h2>
-            </div>
-            <div class="col-md-4">
-                <div class="form-inline float-right">
-                    <input type="text" class="form-control mr-2" placeholder="Nro. Cotización">
-                    <button class="btn btn-info"><i class="fas fa-search"></i></button>
-                </div>
-            </div>
-        </div>
+ <!-- Page Content -->
+             <div id="page-wrapper">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1 class="page-header">Contratos</h1>
+                        </div>
+                        <!-- /.col-lg-12 -->
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    Contratos
+                                </div>
+                                <!-- /.panel-heading -->
+                                <div class="panel-body">
+                                    <!-- Nav tabs -->
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a href="#home" data-toggle="tab"> REGISTRAR CONTRATO</a>
+                                        </li>
+                                        <li><a href="#profile" data-toggle="tab">Vigentes</a>
+                                        </li>
+                                        <li><a href="#messages" data-toggle="tab">Vencidos</a>
+                                        </li>
+                                        <li><a href="#settings" data-toggle="tab">Finalizados</a>
+                                        </li>
+                                    </ul>
 
-        <!-- Filtros de búsqueda por fecha -->
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <div class="form-inline">
-                    <label for="startDate" class="mr-2">De:</label>
-                    <input type="text" id="startDate" class="form-control mr-2" placeholder="dd/mm/aaaa">
-                    <label for="endDate" class="mr-2">A:</label>
-                    <input type="text" id="endDate" class="form-control mr-2" placeholder="dd/mm/aaaa">
-                    <button class="btn btn-info"><i class="fas fa-search"></i></button>
+                                    <!-- Tab panes -->
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade" id="profile">
+                                            <h4>Profile Tab</h4>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                        </div>
+                                        <div class="tab-pane fade" id="messages">
+                                            <h4>Messages Tab</h4>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                        </div>
+                                        <div class="tab-pane fade" id="settings">
+                                            <h4>Settings Tab</h4>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.panel-body -->
+                            </div>
+                            <!-- /.panel -->
+                        </div>
+                        <!-- /.col-lg-6 -->
+                    </div>
                 </div>
+                <!-- /.container-fluid -->
             </div>
-            <div class="col-md-6 text-right">
-                <button class="btn btn-success mr-2">REGISTRAR CONTRATO</button>
-                <button class="btn btn-danger">CONTRATOS VENCIDOS</button>
-            </div>
+            <!-- /#page-wrapper -->
         </div>
-
-        <!-- Tabla de cotizaciones -->
-        <div class="card">
-            <div class="card-body">
-                <table class="table table-bordered">
-                    <thead class="thead-light">
-                        <tr>
-                            <th>Nro. Contrato</th>
-                            <th>Cliente</th>
-                            <th>Vendedor</th>
-                            <th>Fecha - inicio</th>
-                            <th>Fecha - final</th>
-                            <th>Detalles del contrato</th>
-                            <th>Documento Escaneado</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>VGT001</td>
-                            <td>Aris Hernandez</td>
-                            <td>Jorge Hernandez</td>
-                            <td>2023-12-26 14:04:36</td>
-                            <td>2023-12-26 14:04:36</td>
-                            <td>contrato de la familia perez , ubicada en la calles raul prada</td>
-                            <td>img</td>
-                            <td>
-                                <button class="btn btn-info"><i class="fas fa-eye"></i></button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <!-- Paginación -->
-                <nav>
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </div>
+        <!-- /#wrapper -->

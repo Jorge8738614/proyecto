@@ -182,7 +182,7 @@
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> Ventas Efectuadas<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="<?php echo base_url(); ?>Cproducto/agregar">Lista de ventas</a>
+                                    <a href="<?php echo base_url(); ?>Cventa/vista_venta">Lista de ventas</a>
                                 </li>
                                 <li>
                                     <a href="<?php echo base_url(); ?>Cproducto/vista_productos">Reporte de ventas</a>
@@ -215,16 +215,7 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Contratos<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="flot.html">Registro de Contrato</a>
-                                </li>
-                                <li>
-                                    <a href="morris.html">Seguimiento de Contratos</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
+                            <a href="<?php echo base_url(); ?>Ccontrato/vista_contrato"><i class="fa fa-edit fa-fw"></i>Contratos</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Reportes<span class="fa arrow"></span></a>

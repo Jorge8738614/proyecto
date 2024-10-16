@@ -9,6 +9,17 @@
         <!-- Custom Theme JavaScript -->
         <script src="<?php echo base_url(); ?>startmin/js/startmin.js"></script>
 
+         <script>
+            // tooltip demo
+            $('.tooltip-demo').tooltip({
+                selector: "[data-toggle=tooltip]",
+                container: "body"
+            })
+
+            // popover demo
+            $("[data-toggle=popover]").popover()
+        </script>
+
     </body>
 
 </html>
