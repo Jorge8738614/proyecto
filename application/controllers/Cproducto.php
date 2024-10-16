@@ -19,25 +19,43 @@ class Cproducto extends CI_Controller {
 
 
  public function agregarbd() {
- 
+    // Configuración para la subida de la imagen
+    $config['upload_path'] = './uploads/productos/';
+    $config['allowed_types'] = 'jpg|jpeg|png|gif';
+    $config['max_size'] = 2048; // 2MB máximo
+    $config['file_name'] = time() . '_' . $_FILES['producto_imagen']['name'];
 
-    $data = array(
-        'producto_nombre' => $this->input->post('producto_nombre'),
-        'producto_descripcion' => $this->input->post('producto_descripcion'),
-        'producto_precio' => $this->input->post('producto_precio'),
-        'producto_cantidad' => $this->input->post('producto_cantidad'),
-        'producto_codigo' => $this->input->post('producto_codigo'),
-        'producto_unidad_medida' => $this->input->post('producto_unidad_medida'),
-        'producto_estado' => '1' // Estado inicial activo
-    );
+    $this->load->library('upload', $config);
 
-    // Verificar si la transacción fue exitos
-    if ($this->db->trans_status() === FALSE) {
-        echo "Error al registrar el producto y el pedido.";
+    if (!$this->upload->do_upload('producto_imagen')) {
+        // Error en la subida de la imagen
+        $error = array('error' => $this->upload->display_errors());
+        print_r($error); 
     } else {
+        // Subida exitosa, obtener la información de la imagen
+        $imagen_data = $this->upload->data();
+        $imagen_ruta = 'uploads/productos/' . $imagen_data['file_name'];
+
+        // Datos del producto a insertar
+        $data = array(
+            'producto_nombre' => $this->input->post('producto_nombre'),
+            'producto_descripcion' => $this->input->post('producto_descripcion'),
+            'producto_precio' => $this->input->post('producto_precio'),
+            'producto_cantidad' => $this->input->post('producto_cantidad'),
+            'producto_codigo' => $this->input->post('producto_codigo'),
+            'producto_unidad_medida' => $this->input->post('producto_unidad_medida'),
+            'producto_imagen' => $imagen_ruta, // Guardamos la ruta de la imagen
+            'producto_estado' => '1' // Estado inicial activo
+        );
+
+        // Llamar a la función del modelo para insertar el producto
+        $this->Mproducto->insertar_producto($data);
+
+        // Redirigir a la vista de productos si todo es exitoso
         redirect('Cproducto/vista_productos');
     }
 }
+
 
     public function vista_productos() {
      $data = array('productos' => $this->Mproducto->lista_productos_page(1,10),

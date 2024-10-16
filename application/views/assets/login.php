@@ -38,36 +38,39 @@
 
     <body>
 
-        <div class="container">
+       <div class="container">
             <div class="row">
-                <div class="col-md-4 col-md-offset-4">
-                    <div class="login-panel panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">INICIAR SESIÓN</h3>
-                        </div>
-                        <div class="panel-body">
-                            <form role="form" method="POST" action="<?php echo base_url();?>Clogin/validarusuario">
-                                <fieldset>
-                                   <div class="form-group col-md-12" >
-                                        <label>Alias De Usuario</label>
-                                        <input type="text" class="form-control" placeholder="* escriba su alias" name="alias" autocomplete="off" required>
-                                        <div id="resp_alias"></div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-12">
-                                            <label>Contraseña</label>
-                                            <input type="password" class="form-control" placeholder="* escriba su password" name="password" required>
+                    <div class="col-md-4 col-md-offset-4">
+                        <div class="login-panel panel panel-default">
+                            <div class="panel-heading text-center">
+                                <!-- Aquí agregamos el logo de la empresa -->
+                                <img src="<?php echo base_url(); ?>views/assets/images/logo.png" alt="Logo Verzasca" class="img-responsive" style="max-width: 150px; margin: 0 auto;">
+                                <h3 class="panel-title">INICIAR SESIÓN</h3>
+                            </div>
+                            <div class="panel-body">
+                                <form role="form" method="POST" action="<?php echo base_url();?>Clogin/validarusuario">
+                                    <fieldset>
+                                       <div class="form-group col-md-12">
+                                            <label>Alias De Usuario</label>
+                                            <input type="text" class="form-control" placeholder="* escriba su alias" name="alias" autocomplete="off" required>
                                             <div id="resp_alias"></div>
                                         </div>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary btn-md">Ingresar</button>
-                                </fieldset>
-                            </form>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-12">
+                                                <label>Contraseña</label>
+                                                <input type="password" class="form-control" placeholder="* escriba su password" name="password" required>
+                                                <div id="resp_alias"></div>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-md">Ingresar</button>
+                                    </fieldset>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
+
 
        <script src="<?php echo base_url(); ?>startmin/js/jquery.min.js"></script>
 

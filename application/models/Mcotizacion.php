@@ -3,6 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Mcotizacion extends CI_Model {
 
+    public function construct()
+    {
+        parent::__construct();
+    }
+
     public function listar_cotizacion() 
     {
         $query = $this->db->get('cotizacion');

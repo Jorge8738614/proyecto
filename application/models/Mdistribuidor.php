@@ -8,6 +8,10 @@ class Mdistribuidor extends CI_Model {
     //    $this->db->insert('pedido', $datos_pedido);
    // }
 
+    public function construct()
+    {
+        parent::__construct();
+    }
     public function listar_venta() {
         $query = $this->db->get('venta');
         return $query->result();

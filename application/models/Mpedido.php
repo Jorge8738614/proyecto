@@ -2,6 +2,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Mpedido extends CI_Model {
+    public function construct()
+    {
+        parent::__construct();
+    }
+
 
     public function listar_pedidos() {
         $query = $this->db->get('pedido');

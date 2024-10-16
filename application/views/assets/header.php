@@ -34,11 +34,29 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
+
+        <!--    Plugin Easy autocomplete  CSS-->  
+        <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/easyAutocomplete-1.3.5/easy-autocomplete.min.css">   
+       <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/easyAutocomplete-1.3.5/easy-autocomplete.themes.min.css">
     </head>
 
         <body>
 
         <div id="wrapper">
+            <?php
+            //print_r($this ->session);
+            //echo "</br> este es el id usuario : ";
+            $id_usuario_sesion = $this->session->userdata('id_usuario_sesion');
+            //echo $id_usuario_sesion; echo "</br>";
+
+            if ($id_usuario_sesion =="") {
+              header("Location: http://localhost/proyecto/Clogin/index");
+            }
+            if ($id_usuario_sesion>0) {
+             // echo "usuario logeado";
+              
+            }
+            ?>
 
             <!-- Navigation -->
             <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -111,18 +129,24 @@
                 <!-- CONTROL DE INICIO DE SESION   -->
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-user fa-fw"></i> secondtruth <b class="caret"></b>
+                            <i class="fa fa-user fa-fw"></i> 
+                             <?php if ($this->session->userdata('alias_sesion')): ?>
+                                Usuario: <?= $this->session->userdata('alias_sesion'); ?>
+                            <?php else: ?>
+                                Usuario no encontrado
+                            <?php endif; ?>
+                            <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu dropdown-user">
                             <li>
-                                <a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                                <a href="#"><i class="fa fa-user fa-fw"></i> Datos Usuario</a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                                <a href="#"><i class="fa fa-gear fa-fw"></i>Configuracion</a>
                             </li>
                             <li class="divider"></li>
                             <li>
-                                <a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                                <a href="<?php echo base_url(); ?>Clogin/salir"><i class="fa fa-sign-out fa-fw"></i> Cerrar Sesion</a>
                             </li>
                         </ul>
                     </li>
@@ -155,9 +179,6 @@
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Usuarios<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="<?php echo base_url(); ?>Cusuario/agregar">Registro de Usuario</a>
-                                </li>
                                 <li>
                                     <a href="<?php echo base_url(); ?>Cusuario/vista_usuarios">Lista de Usuario</a>
                                 </li>
@@ -206,10 +227,10 @@
                             <a href="#"><i class="fa fa-files-o fa-fw"></i> Cotizaciones<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="flot.html">Registro de Nueva Cotizacion</a>
+                                    <a href="<?php echo base_url(); ?>Ccotizacion/agregar_cotizacion">Registro de Nueva Cotizacion</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">Lista de Cotizacion</a>
+                                    <a href="<?php echo base_url(); ?>Ccotizacion/listar_cotizacion">Lista de Cotizacion</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

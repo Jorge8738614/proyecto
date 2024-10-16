@@ -61,6 +61,7 @@ class Cusuario extends CI_Controller {
             'nombre_completo' => $this->input->post('nombre_completo'),
             'apellido' => $this->input->post('apellido'),
             'celular' => $this->input->post('celular'),
+            'ci' => $this->input->post('ci'),
             'password' => password_hash($this->input->post('password'), PASSWORD_BCRYPT),
             'cargo' => $this->input->post('cargo'),
             'alias' => $this->input->post('alias')

@@ -18,7 +18,7 @@
                                                         <input name="txt_buscar" type="text" placeholder="Buscar Usuarios" class="form-control" >   
                                                 </td>
                                                 <td>
-                                                    <button type="submit" class="btn btn-primary btn-sm" > Buscar </button>
+                                                    <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
                                                  </form>
                                                 </td>
 
@@ -26,7 +26,7 @@
                                                     <a class="btn btn-primary btn-sm" href="<?php echo base_url(); ?>Cusuario/vista_usuarios_deshabilitados"> Deshabilitados </a>
                                                 </td>
                                                 <td>
-                                                       <!-- Button trigger modal -->
+                                                <!-- Button trigger modal -->
                                                   <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
                                                             Nuevo Usuario
                                                   </button>
@@ -57,7 +57,11 @@
                                                                     <label for="nombre_completo">Apellido(s)</label>
                                                                     <input type="text" class="form-control" id="apellido" placeholder="* Escriba su primer apellido" name="apellido" required>
                                                                 </div>
-                                                                <div class="form-group">
+                                                                  <div class="form-group col-md-6">
+                                                                    <label for="ci">CI</label>
+                                                                    <input type="ci" class="form-control" id="ci" placeholder="* escriba su CI" name="celular" required>
+                                                                </div>
+                                                                <div class="form-group col-md-6">
                                                                     <label for="telefono">celular</label>
                                                                     <input type="tel" class="form-control" id="celular" placeholder="* Escriba su número telefónico" name="celular" required>
                                                                 </div>
@@ -75,7 +79,7 @@
                                                                     </select>
                                                                     <div id="resp_cargo"></div>
                                                                 </div>
-                                                                <div class="form-group">
+                                                                <div class="form-group col-md-6">
                                                                     <label for="alias">Alias</label>
                                                                     <input type="text" class="form-control" id="alias" placeholder="* Escriba su alias" name="alias" required>
                                                                 </div>
@@ -121,7 +125,8 @@
                                                     <th>Nombre Completo</th>
                                                     <th>Apellido</th>
                                                     <th>Alias</th>
-                                                    <th>Rol</th>
+                                                    <th>CI</th>
+                                                    <th>Cargo</th>
                                                     <th>Fecha Creación</th>
                                                     <th>Modificar</th>
                                                     <th>Eliminar</th>
@@ -139,7 +144,8 @@
                                                         <td><?php echo $row->nombre_completo; ?></td>
                                                         <td><?php echo $row->apellido; ?></td>
                                                         <td><?php echo $row->alias; ?></td>
-                                                        <td><?php echo $row->id_rol; ?></td>
+                                                        <td><?php echo $row->ci; ?></td>
+                                                         <td><?php echo $row->cargo; ?></td>
                                                         <td><?php echo formatearFecha($row->fecha_creacion); ?></td>
                                                         <!-- Opcional: acciones para modificar, eliminar y deshabilitar -->
                                                         
@@ -164,6 +170,19 @@
                                                     ?>
                                             </tbody>
                                         </table>
+                                        <div class="pagination">
+                                            <table class="table-responsive" >
+                                                <tr>
+                                                    <td> <a href="<?php echo base_url(); ?>/Cusuario/page_ant?sig=<?php echo $caminante; ?>&cam=<?php echo $caminante; ?>"> <span></span> < anterior </a> 
+                                                    </td>
+                                                    <td style="width: 50px; text-align: center;"> <?php echo $caminante; ?> <center>  <input type="hidden" value="1" name="caminante"> </center> 
+                                                     </td>
+                                                    <td> 
+                                                        <a href="<?php echo base_url(); ?>/Cusuario/page_sig?sig=<?php echo $caminante; ?>&cam=<?php echo $caminante; ?>"> <span></span> siguiente > </a> 
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- /.panel-body -->

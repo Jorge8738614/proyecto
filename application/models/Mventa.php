@@ -2,6 +2,10 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Mventa extends CI_Model {
+    public function construct()
+    {
+        parent::__construct();
+    }
 
     public function listar_venta() {
         $query = $this->db->get('venta');

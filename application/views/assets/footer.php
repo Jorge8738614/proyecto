@@ -9,6 +9,10 @@
         <!-- Custom Theme JavaScript -->
         <script src="<?php echo base_url(); ?>startmin/js/startmin.js"></script>
 
+        <!--    Plugin Easy autocomplete  JS -->
+    <script src="<?php echo base_url(); ?>plugins/easyAutocomplete-1.3.5/jquery.easy-autocomplete.min.js"></script>
+     <script src="<?php echo base_url(); ?>js/codigo.js"></script> 
+
          <script>
             // tooltip demo
             $('.tooltip-demo').tooltip({
