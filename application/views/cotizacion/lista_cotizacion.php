@@ -1,68 +1,105 @@
-    <!-- Sección principal -->
-    <div class="container mt-4">
-        <!-- Título y Formulario de búsqueda -->
-        <div class="row mb-3">
-            <div class="col-md-8">
-                <h2><i class="fas fa-file-alt"></i> Lista de cotizaciones</h2>
-            </div>
-            <div class="col-md-4">
-                <div class="form-inline float-right">
-                    <input type="text" class="form-control mr-2" placeholder="Nro. Cotización">
-                    <button class="btn btn-info"><i class="fas fa-search"></i></button>
-                </div>
-            </div>
-        </div>
+    <div id="page-wrapper">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1 class="page-header">Cliente</h1>
+                        </div>
+                        <!-- /.col-lg-12 -->
+                    </div>
+                    <!-- /.row -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <table class="table">
+                                        <tr>
+                                            <td style="width: 70%;">
+                                                <form method="GET" action="<?php echo base_url(); ?>">
+                                                    <input name="txt_buscar" type="text" placeholder="Buscar Clientes" class="form-control">
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+                                                </form>
+                                            </td>
+                                            <td>
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-danger btn-sm" href="<?php echo base_url(); ?>">inactivos</a>
+                                            </td>
+                                    
+                                        </tr>
+                                    </table>
+                                </div>
+                                <!-- /.panel-heading -->
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nro. Cotización</th>
+                                                    <th>Fecha - Hora</th>
+                                                    <th>Cliente</th>
+                                                    <th>Vendedor</th>
+                                                    <th>Total Cotización</th>
+                                                    <th>Acciones</th>
+                                                </tr> 
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                              <?php
+                                                $contador = 1;
+                                                //foreach ($clientes as $row) {
+                                                ?>
+                                                <tr>
+                                                     <td>VGT001</td>
+                                                    <td>2023-12-26 14:04:36</td>
+                                                    <td>Aris Hernandez</td>
+                                                    <td>Jorge Hernandez</td>
+                                                    <td>S/. 141.6</td>
+                                                    <td>
+                                                        <form method="GET" action="<?php echo base_url(); ?>">
+                                                            <input type="text" name="id" value="" style="display: none;">
+                                                            <button type="submit" class="btn btn-success btn-xs">Modificar</button>
+                                                        </form>
+                                                    </td>
+                                                    <td>
+                                                        <form method="GET" action="<?php echo base_url(); ?>">
+                                                            <input type="text" name="id" value="" style="display: none;">
+                                                            <button type="submit" class="btn btn-danger btn-xs">Eliminar</button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                                <?php
+                                                    $contador++;
+                                             //   }
+                                                ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                <div class="pagination">
+                                    <table class="table-responsive">
+                                        <tr>
+                                            <td> <a href=""> <span></span> < anterior </a> 
+                                            </td>
+                                            <td style="width: 50px; text-align: center;">  <center>  <input type="hidden" value="1" name="caminante"> </center> 
+                                             </td>
+                                            <td> 
+                                                <a href=""> <span></span> siguiente > </a> 
+                                            </td>
+                                        </tr>
+                                    </table>
+                                 </div>
 
-        <!-- Filtros de búsqueda por fecha -->
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <div class="form-inline">
-                    <label for="startDate" class="mr-2">De:</label>
-                    <input type="text" id="startDate" class="form-control mr-2" placeholder="dd/mm/aaaa">
-                    <label for="endDate" class="mr-2">A:</label>
-                    <input type="text" id="endDate" class="form-control mr-2" placeholder="dd/mm/aaaa">
-                    <button class="btn btn-info"><i class="fas fa-search"></i></button>
-                </div>
-            </div>
-            <div class="col-md-6 text-right">
-                <button class="btn btn-success mr-2"><i class="fas fa-file-excel"></i></button>
-                <button class="btn btn-danger"><i class="fas fa-file-pdf"></i></button>
-            </div>
-        </div>
+                                </div>
+                                <!-- /.panel-body -->
+                            </div>
+                            <!-- /.panel -->
+                        </div>
+                        <!-- /.col-lg-12 -->
+                    </div>
 
-        <!-- Tabla de cotizaciones -->
-        <div class="card">
-            <div class="card-body">
-                <table class="table table-bordered">
-                    <thead class="thead-light">
-                        <tr>
-                            <th>Nro. Cotización</th>
-                            <th>Fecha - Hora</th>
-                            <th>Cliente</th>
-                            <th>Vendedor</th>
-                            <th>Total Cotización</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>VGT001</td>
-                            <td>2023-12-26 14:04:36</td>
-                            <td>Aris Hernandez</td>
-                            <td>Jorge Hernandez</td>
-                            <td>S/. 141.6</td>
-                            <td>
-                                <button class="btn btn-info"><i class="fas fa-eye"></i></button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <!-- Paginación -->
-                <nav>
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    </ul>
-                </nav>
-            </div>
+            <!-- /#page-wrapper -->
+
         </div>
-    </div>
+</div>
+

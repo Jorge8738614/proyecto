@@ -18,7 +18,7 @@
                                                         <input name="txt_buscar" type="text" placeholder="Buscar Usuarios" class="form-control" >   
                                                 </td>
                                                 <td>
-                                                    <button type="submit" class="btn btn-primary btn-sm" > Buscar </button>
+                                                    <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
                                                  </form>
                                                 </td>
 
@@ -46,7 +46,7 @@
                                                     <th>Nombre Completo</th>
                                                     <th>Apellido</th>
                                                     <th>Alias</th>
-                                                    <th>Rol</th>
+                                                    <th>CI</th>
                                                     <th>Fecha Creación</th>
                                                     <th>Modificar</th>
                                                     <th>Eliminar</th>
@@ -64,7 +64,7 @@
                                                         <td><?php echo $row->nombre_completo; ?></td>
                                                         <td><?php echo $row->apellido; ?></td>
                                                         <td><?php echo $row->alias; ?></td>
-                                                        <td><?php echo $row->id_rol; ?></td>
+                                                        <td><?php echo $row->ci; ?></td>
                                                         <td><?php echo formatearFecha($row->fecha_creacion); ?></td>
                                                         <!-- Opcional: acciones para modificar, eliminar y deshabilitar -->
                                                         

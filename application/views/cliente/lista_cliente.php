@@ -18,11 +18,89 @@
                                                     <input name="txt_buscar" type="text" placeholder="Buscar Clientes" class="form-control">
                                             </td>
                                             <td>
-                                                <button type="submit" class="btn btn-primary btn-sm">Buscar</button>
+                                                <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
                                                 </form>
                                             </td>
                                             <td>
-                                                <a class="btn btn-primary btn-sm" href="<?php echo base_url(); ?>Ccliente/vista_clientes_deshabilitados">Deshabilitados</a>
+                                                 <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+                                                            Nuevo Cliente
+                                                  </button>
+                                                  <!-- Modal -->
+                                                  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-="true">
+                                                      <div class="modal-dialog" role="document">
+                                                                <div class="modal-content">
+                                                              <div class="modal-header">
+                                                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                        <h4 class="modal-title" id="myModalLabel">Nuevo Cliente</h4>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="panel panel-default">
+                                                        <div class="panel-heading">
+                                                            REGISTRAR CLIENTE
+                                                        </div>
+                                                        <div class="panel-body">
+                                                            <div class="row">
+                                                                <div class="col-lg-12">
+                                                                    <form method="POST" action="<?php echo base_url();?>Ccliente/agregarbd" autocomplete="off">
+                                                                    <div class="form-group">
+                                                                        <label for="nombre">Nombre(s)</label>
+                                                                        <input type="text" class="form-control" id="nombre" placeholder="* Escriba su nombre" name="nombre" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="nombre">Apellidos</label>
+                                                                        <input type="text" class="form-control" id="apellido" placeholder="* Escriba su apellido" name="nombre" required>
+                                                                    </div>
+                                                                      <div class="form-group col-md-6">
+                                                                        <label for="direccion">Dirección</label>
+                                                                        <input type="text" class="form-control" id="direccion" placeholder="* Escriba su dirección" name="direccion" required>
+                                                                    </div>
+                                                                    <div class="form-group col-md-6">
+                                                                        <label for="producto_imagen">Imagen</label>
+                                                                        <input type="file" name="producto_imagen" class="form-control" required>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                    <div class="form-group col-md-6">
+                                                                        <label for="nombre">tipo</label>
+                                                                        <input type="text" class="form-control" id="tipo_cliente" placeholder="* Escriba su tipo" name="tipo" required>
+                                                                    </div>
+                                                                    <div class="form-group col-md-6">
+                                                                        <label for="celular">Celular</label>
+                                                                        <input type="tel" class="form-control" id="celular" placeholder="* Escriba su número de celular" name="celular" required>
+                                                                    </div>
+                                                                    </div>
+                                                                    <br>
+                                                                    <div class="text-center">
+                                                                        <button type="submit" class="btn btn-primary btn-md">Registrar</button>
+                                                                        <a href="<?php echo base_url(); ?>Ccliente/vista_clientes" class="btn btn-danger">Cancelar</a>   
+                                                                    </div>
+                                                                </form>
+                                                                </div>
+                                                        </div>
+                                                        <!-- /.panel-body -->
+                                                    </div>
+                                                    <!-- /.panel -->
+                                                </div>
+                                                <!-- /.col-lg-12 -->
+                                            </div>
+                                            <!-- /.row -->
+                                        </div>
+                                        <!-- /.container-fluid -->
+                                                                </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- /.modal-content -->
+                                                            </div>
+                                                            <!-- /.modal-dialog -->
+                                                        </div>
+                                                        <!-- /.modal -->  
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-danger btn-sm" href="<?php echo base_url(); ?>Ccliente/vista_clientes_deshabilitados">inactivos</a>
                                             </td>
                                     
                                         </tr>
@@ -34,9 +112,12 @@
                                         <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                             <thead>
                                                 <tr>
-                                                     <th>No.</th>
+                                                    <th>No.</th>
                                                     <th>Nombre</th>
+                                                    <th>Apellido</th>
+                                                    <th>tipo</th>
                                                     <th>Dirección</th>
+                                                    <th>Foto referencial</th>
                                                     <th>Teléfono</th>
                                                     <th>Modificar</th>
                                                     <th>Eliminar</th>
@@ -51,7 +132,10 @@
                                                 <tr>
                                                     <td><?php echo $contador; ?></td>
                                                     <td><?php echo $row->nombre; ?></td>
+                                                    <td><?php echo $row->apellido; ?></td>
+                                                    <td><?php echo $row->tipo; ?></td>
                                                     <td><?php echo $row->direccion; ?></td>
+                                                    <td></td>
                                                     <td><?php echo $row->celular; ?></td>
                                                     <td>
                                                         <form method="GET" action="<?php echo base_url(); ?>Ccliente/modificar">
@@ -74,7 +158,7 @@
                                         </table>
                                     </div>
                                 <div class="pagination">
-                                    <table class="table table-bordered">
+                                    <table class="table-responsive">
                                         <tr>
                                             <td> <a href="<?php echo base_url(); ?>Ccliente/page_ant?sig=<?php echo $caminante; ?>&cam=<?php echo $caminante; ?>"> <span></span> < anterior </a> 
                                             </td>

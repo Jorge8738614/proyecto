@@ -52,11 +52,11 @@
                 
                 <td>
                     <form method="GET" action="<?php echo base_url(); ?>Cproducto/modificar">
-				    <input type="text" name="id" value="<?php echo $producto->id_producto; ?>" style="display: none;">
-				    <button type="submit" class="btn btn-success">Modificar</button>
-				    </form>
-				    
-				</td>
+                    <input type="text" name="id" value="<?php echo $producto->id_producto; ?>" style="display: none;">
+                    <button type="submit" class="btn btn-success">Modificar</button>
+                    </form>
+                    
+                </td>
                 <td>
                     <form method="GET" action="<?php echo base_url(); ?>Cproducto/eliminarbd">
                     <input type="text" name="id" value="<?php echo $row->id_producto; ?>" style="display: none;">
@@ -72,4 +72,5 @@
         </tbody>
     </table>
 </div>
+
 

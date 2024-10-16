@@ -41,7 +41,7 @@
                                                 <th>Cliente</th>
                                                 <th>Fecha de Venta</th>
                                                 <th>Total</th>
-                                                <th>Acciones</th>
+                                                <th>Ver detalles</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -58,7 +58,7 @@
                                                             <td>
                                                                 <form method="GET" action="<?php echo base_url(); ?>Cventa/ver_venta">
                                                                     <input type="hidden" name="id" value="<?php echo $vnt->id_venta; ?>">
-                                                                    <button class="btn btn-info"><i class="fas fa-eye"></i>Ver</button>
+                                                                <button type="button" class="btn btn-info">Info</button>
                                                                 </form>
                                                             </td>
                                                         </tr>
@@ -67,6 +67,25 @@
                                                     ?>
                                             </tbody>
                                         </table>
+                                         <div class="pagination">
+                                            <table class="table-responsive">
+                                                <tr>
+                                                    <td>
+                                                        <a class="page-link" href="<?php echo base_url(); ?>Cventa/page_ant?sig=<?php echo $caminante; ?>&cam=<?php echo $caminante; ?>">
+                                                        < anterior
+                                                         </a>
+                                                    </td>
+                                                    <td style="width: 50px; text-align: center;">
+                                                        <?php echo $caminante; ?> <input type="hidden" value="1" name="caminante">
+                                                    </td>
+                                                    <td>
+                                                        <a class="page-link" href="<?php echo base_url(); ?>Cventa/page_sig?sig=<?php echo $caminante; ?>&cam=<?php echo $caminante; ?>">
+                                                        siguiente >
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- /.panel-body -->
