@@ -37,7 +37,8 @@ class Ccliente extends CI_Controller {
         $this->load->view('assets/footer');
     }
 
-    public function agregarbd() {
+    public function agregarbd() 
+    {
         $data = array(
             'nombre' => $this->input->post('nombre'),
             'direccion' => $this->input->post('direccion'),

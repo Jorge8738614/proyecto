@@ -11,70 +11,27 @@
                         <div class="col-lg-12">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <table class="table">
-                                        <tr>
-                                            <td style="width: 70%;">
-                                                <form method="GET" action="<?php echo base_url(); ?>">
-                                                    <input name="txt_buscar" type="text" placeholder="Buscar Clientes" class="form-control">
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
-                                                </form>
-                                            </td>
-                                            <td>
-                                            </td>
-                                            <td>
-                                                <a class="btn btn-danger btn-sm" href="<?php echo base_url(); ?>">inactivos</a>
-                                            </td>
-                                    
-                                        </tr>
-                                    </table>
-                                </div>
-                                <!-- /.panel-heading -->
-                                <div class="panel-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                        <table class="table table-striped">
                                             <thead>
                                                 <tr>
-                                                    <th>Nro. Cotización</th>
-                                                    <th>Fecha - Hora</th>
+                                                    <th>ID</th>
                                                     <th>Cliente</th>
-                                                    <th>Vendedor</th>
-                                                    <th>Total Cotización</th>
+                                                    <th>Fecha</th>
                                                     <th>Acciones</th>
-                                                </tr> 
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                              <?php
-                                                $contador = 1;
-                                                //foreach ($clientes as $row) {
-                                                ?>
+                                                <?php foreach ($cotizaciones as $cotizacion): ?>
                                                 <tr>
-                                                     <td>VGT001</td>
-                                                    <td>2023-12-26 14:04:36</td>
-                                                    <td>Aris Hernandez</td>
-                                                    <td>Jorge Hernandez</td>
-                                                    <td>S/. 141.6</td>
+                                                    <td><?php echo $cotizacion->id_cotizacion; ?></td>
+                                                    <td><?php echo $cotizacion->nombre_cliente; ?></td>
+                                                    <td><?php echo $cotizacion->fecha_cotizacion; ?></td>
                                                     <td>
-                                                        <form method="GET" action="<?php echo base_url(); ?>">
-                                                            <input type="text" name="id" value="" style="display: none;">
-                                                            <button type="submit" class="btn btn-success btn-xs">Modificar</button>
-                                                        </form>
-                                                    </td>
-                                                    <td>
-                                                        <form method="GET" action="<?php echo base_url(); ?>">
-                                                            <input type="text" name="id" value="" style="display: none;">
-                                                            <button type="submit" class="btn btn-danger btn-xs">Eliminar</button>
-                                                        </form>
+                                                        <a href="<?php echo base_url('Ccotizacion/ver_cotizacion/' . $cotizacion->id_cotizacion); ?>" class="btn btn-info">Ver Detalles</a>
                                                     </td>
                                                 </tr>
-                                                <?php
-                                                    $contador++;
-                                             //   }
-                                                ?>
+                                                <?php endforeach; ?>
                                             </tbody>
-                                        </table>
                                     </div>
                                 <div class="pagination">
                                     <table class="table-responsive">

@@ -227,10 +227,10 @@
                             <a href="#"><i class="fa fa-files-o fa-fw"></i> Cotizaciones<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="<?php echo base_url(); ?>Ccotizacion/agregar_cotizacion">Registro de Nueva Cotizacion</a>
+                                    <a href="<?php echo base_url(); ?>Ccotizacion/registrar_cotizacion">Registro de Nueva Cotizacion</a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo base_url(); ?>Ccotizacion/listar_cotizacion">Lista de Cotizacion</a>
+                                    <a href="<?php echo base_url(); ?>Ccotizacion/listar_cotizaciones">Lista de Cotizacion</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

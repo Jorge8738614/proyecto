@@ -53,13 +53,13 @@ class Clogin extends CI_Controller {
 				$this->session->set_userdata($data_session);
 				echo"alias"; echo $this->session->alias_sesion;
 
-				header("Location: http://localhost/proyecto/Clogin/menu");
+				header("Location: http://localhost:8080/proyectoVERZASCA/Clogin/menu");
 
 			}
 		}
 		else
 		{
-			header("Location: http://localhost/proyecto/Clogin/index");
+			header("Location: http://localhost:8080/proyectoVERZASCA/Clogin/index");
 		
 		}
 	}

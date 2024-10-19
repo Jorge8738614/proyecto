@@ -16,43 +16,24 @@
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-lg-12">
-                                    <form method="POST" action="<?php echo base_url();?>Ccliente/agregarbd" autocomplete="off">
-                                        <div class="form-group">
-                                            <label for="nombre">Nombre(s)</label>
-                                            <input type="text" class="form-control" id="nombre" placeholder="* Escriba su nombre" name="nombre" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="nombre">Apellidos</label>
-                                            <input type="text" class="form-control" id="apellido" placeholder="* Escriba su apellido" name="nombre" required>
-                                        </div>
-                                          <div class="form-group col-md-6">
-                                            <label for="direccion">Dirección</label>
-                                            <input type="text" class="form-control" id="direccion" placeholder="* Escriba su dirección" name="direccion" required>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="direccion">Foto referencial</label>
-                                            <input type="file">
-                                        </div>
-                                        <div class="col-md-12">
-                                        <div class="form-group col-md-6">
-                                            <label for="nombre">tipo</label>
-                                            <input type="text" class="form-control" id="tipo_cliente" placeholder="* Escriba su tipo" name="tipo" required>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="celular">Celular</label>
-                                            <input type="tel" class="form-control" id="celular" placeholder="* Escriba su número de celular" name="celular" required>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="celular">Productos solicitados: </label>
-                                            <input type="text" class="form-control" id="producto_solicitados" placeholder="* Escriba su número de celular" name="celular" required>
-                                        </div>
-                                        </div>
-                                        <br>
-                                        <div class="text-center">
-                                            <button type="submit" class="btn btn-primary btn-md">Registrar</button>
-                                            <a href="<?php echo base_url(); ?>Ccliente/vista_clientes" class="btn btn-danger">Cancelar</a>   
-                                        </div>
-                                    </form>  
+                                            <form action="<?php echo base_url('Ccotizacion/guardar_cotizacion'); ?>" method="POST">
+                                                <div class="form-group">
+                                                    <label for="nombre_cliente">Nombre del Cliente</label>
+                                                    <input type="text" name="nombre_cliente" class="form-control" required>
+                                                </div>
+
+                                                <h3>Seleccionar Productos</h3>
+                                                <?php foreach ($productos as $producto): ?>
+                                                    <div class="form-group">
+                                                        <label for="producto_<?php echo $producto->id_producto; ?>">
+                                                            <?php echo $producto->producto_nombre; ?> (<?php echo $producto->producto_precio; ?>)
+                                                        </label>
+                                                        <input type="number" name="productos[<?php echo $producto->id_producto; ?>]" class="form-control" min="0" max="<?php echo $producto->producto_cantidad; ?>" value="0">
+                                                    </div>
+                                                <?php endforeach; ?>
+
+                                                <button type="submit" class="btn btn-primary">Guardar Cotización</button>
+                                            </form>
                                         </div>
                                 </div>
                                 <br>

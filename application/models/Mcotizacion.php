@@ -3,118 +3,51 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Mcotizacion extends CI_Model {
 
-    public function construct()
-    {
+    public function __construct() {
         parent::__construct();
     }
 
-    public function listar_cotizacion() 
-    {
-        $query = $this->db->get('cotizacion');
-        return $query->result();
-    }
-    
-    public function get_cotizacion_id()
-    {
-        $this->db->order_by('id_cotizacion DESC');
-        $this->db->select('*');
-        $this->db->limit(1);
-        $query = $this->db->get('cotizacion');
-        return $query->result();    
+    // Inserta una nueva cotización
+    public function insertar_cotizacion($datos_cotizacion) {
+        $this->db->insert('cotizacion', $datos_cotizacion);
+        return $this->db->insert_id();  // Devuelve el ID de la cotización creada
     }
 
-    public function registrar_carrito_cotizacion($data)
-    {
-         $this->db->insert('cotizacion', $data);
+    // Inserta los productos en la tabla de detalle de cotización
+    public function insertar_detalle_cotizacion($detalle) {
+        return $this->db->insert('detalle_cotizacion', $detalle);
     }
 
-    public function registrar_detalle_cotizacion($data)
-    {
-         $this->db->insert('detalle_cotizacion', $data);
-    }
-
-    public function vaciar_carrito($codigo_car)
-    {
-        $this->db->where('codigo_car',$codigo_car);
-        //$this->db->where("c.codigo_cot", $codigo_car// Debería ser $codigo_cot
-        $this->db->delete('carrito');
-    }
-
-
-    public function listar_ultima_cotizacion()
-    {
-        $this->db->order_by('id_cotizacion DESC');
-        $this->db->select('*');
-        $this->db->limit(1);
-        $query = $this->db->get('cotizacion');
-        return $query->result(); // Devuelve una única fila
-    }
-
-    
-    public function lista_carrito_cotizacion($codigo_car)
-    {
-        $this->db->select('*');
-        $this->db->join("producto p", "p.id_producto = c.id_producto");
-        //$this->db->join("cliente cl", "cl.id_cliente = c.id_cliente");
-        $this->db->where("c.codigo_car", $codigo_car);
-        $query = $this->db->get('carrito_co c');
-        return $query->result(); // Devuelve una única fila
-    }
-    
-    // Obtener lista de productos (esto es opcional si ya tienes un método similar en otro modelo)
-    public function obtener_productos() 
-    {
+    // Obtiene todos los productos
+    public function obtener_productos() {
+        $this->db->where('producto_estado', 1);  // Solo productos habilitados
         $query = $this->db->get('producto');
         return $query->result();
     }
 
-   public function eliminar_carrito_cotizacion($id_carrito_co)
-    {
-        $this->db->where('id_carrito_co',$id_carrito_co);
-        $this->db->delete('carrito');
+    // Obtiene todos las cotizaciones
+public function obtener_cotizaciones() {
+    $this->db->select('cotizacion.id_cotizacion, cliente.nombre AS nombre_cliente, cotizacion.fecha_creacion AS fecha_cotizacion');
+    $this->db->from('cotizacion');
+    $this->db->join('cliente', 'cotizacion.id_cliente = cliente.id_cliente');
+    $query = $this->db->get();
+    return $query->result();
+}
+
+ 
+    // Obtiene los datos de una cotización específica
+    public function obtener_cotizacion($id_cotizacion) {
+        $this->db->where('id_cotizacion', $id_cotizacion);
+        $query = $this->db->get('cotizacion');
+        return $query->row();
     }
 
-    public function obtener_cotizacion() {
-        $this->db->select('*');
-        $this->db->from('cotizacion');
-        $query = $this->db->get();
+    // Obtiene el detalle de una cotización específica
+    public function obtener_detalle_cotizacion($id_cotizacion) {
+        $this->db->where('cotizacion_id', $id_cotizacion);
+        $query = $this->db->get('detalle_cotizacion');
         return $query->result();
     }
 
-    public function get_producto($id_cotizacion)
-    {
-        $this->db->select('*');
-        $this->db->from('cotizacion');
-        $this->db->where('id_cotizacion', $id_cotizacion);
-        $query = $this->db->get();
-        return $query->result();       
-    }
-
-    public function recuperar_cotizacion($id_cotizacion)
-
-    {
-        $this->db->select('*');
-        $this->db->from('cotizacion');
-        $this->db->where('id_cotizacion',$id_cotizacion);  // Ajusta aquí si el nombre es diferente
-        $resultados = $this->db->get();
-         return $resultados -> result(); // Devuelve el re
-    }
-
-    // FUNCIONES DE PAGINACION PARA VENTA
-    public function size_cotizacion()    
-    {       $this->db->select('*');
-            //$this->db->where('estado_usuario', 1);  // Ajusta aquí si el nombre es diferente 
-            $resultados= $this->db->get('cotizacion');
-            return $resultados -> result(); //devuelve el resultado
-    }
-    public function lista_cotizacion_page($ini,$fin)
-    {
-            $this->db->select('*');
-            //$this->db->where('estado_usuario', 1);  // Ajusta aquí si el nombre es diferente
-            $this->db->limit(10, $ini); 
-            $resultados= $this->db->get('cotizacion');
-            return $resultados -> result(); //devuelve el resultado
-    }
-
-
+    
 }
