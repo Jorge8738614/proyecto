@@ -7,7 +7,7 @@ class Mcontrato extends CI_Model {
    // public function insertar_pedido($datos_pedido) {
     //    $this->db->insert('pedido', $datos_pedido);
    // }
-    public function construct()
+    public function construct(){
     
         parent::__construct();
     }
